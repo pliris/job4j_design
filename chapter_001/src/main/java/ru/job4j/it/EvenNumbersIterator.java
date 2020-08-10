@@ -18,28 +18,28 @@ public class EvenNumbersIterator implements Iterator<Integer> {
         while (positionHasNext < numbers.length) {
             if (numbers[positionHasNext] % 2 == 0) {
                 check = true;
-                positionHasNext++;
                 break;
             }
             positionHasNext++;
         }
+        positionHasNext++;
         return check;
     }
 
     @Override
     public Integer next() {
         Integer num = 0;
-        if (!hasNext()) {
-            throw new NoSuchElementException();
-        }
         while (positionNext < numbers.length) {
             if (numbers[positionNext] % 2 == 0) {
                 num = numbers[positionNext];
-                positionNext++;
                 break;
             }
             positionNext++;
         }
+        if (positionNext == numbers.length) {
+            throw new NoSuchElementException();
+        }
+        positionNext++;
         return num;
     }
 }
