@@ -8,7 +8,7 @@ public class SimpleArray<T> implements Iterable<T> {
     private T[] array;
     private int position = 0;
 
-    public SimpleArray(Integer size) {
+    public SimpleArray(int size) {
         this.array = (T[]) new Object[size];
     }
 
@@ -23,19 +23,21 @@ public class SimpleArray<T> implements Iterable<T> {
 
     public boolean set(int index, T model) {
         boolean rsl = false;
-        if (index == Objects.checkIndex(index, array.length)) {
-            array[index] = model;
-            rsl = true;
-        }
-        return rsl;
+            if (index == Objects.checkIndex(index, array.length)) {
+                array[index] = model;
+                rsl = true;
+            }
+            return rsl;
     }
 
     public boolean remove(int index) {
         boolean rsl = false;
         if (index == Objects.checkIndex(index, array.length)) {
-            array[index] = array[index++];
-            while (index < array.length - 1 && array[index] != null) {
-                array[index] = array[index++];
+            array[index] = null;
+            index++;
+               while (index < array.length) {
+                array[index - 1] = array[index];
+                index++;
                 rsl = true;
             }
         }

@@ -19,14 +19,6 @@ public class FlatMap<T> implements Iterator<T> {
         while (data.hasNext() && !cursor.hasNext()) {
             cursor = data.next();
         }
-//            if (cursor == null) {
-//                cursor = data.next();
-//            }
-//            if (!cursor.hasNext()) {
-//                cursor = data.next();
-//            }
-//            break;
-//            }
         return cursor.hasNext();
     }
 

@@ -13,8 +13,7 @@ public class SimpleArrayIterator<T> implements Iterator<T> {
 
     @Override
     public boolean hasNext() {
-
-        return position < array.length;
+        return position < array.length && array[position] != null;
     }
 
     @Override
