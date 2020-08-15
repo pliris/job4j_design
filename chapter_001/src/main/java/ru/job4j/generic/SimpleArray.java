@@ -23,7 +23,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
     public boolean set(int index, T model) {
         boolean rsl = false;
-            if (index == Objects.checkIndex(index, array.length)) {
+            if (index == Objects.checkIndex(index, position)) {
                 array[index] = model;
                 rsl = true;
             }
@@ -32,15 +32,12 @@ public class SimpleArray<T> implements Iterable<T> {
 
     public boolean remove(int index) {
         boolean rsl = false;
-        if (index == Objects.checkIndex(index, array.length)) {
+        if (index == Objects.checkIndex(index, position)) {
             array[index] = null;
-            index++;
-               while (index < array.length) {
-                array[index - 1] = array[index];
-                index++;
-                rsl = true;
+            System.arraycopy(array, index + 1, array, index, position);
+            rsl = true;
             }
-        }
+
         return rsl;
     }
 
