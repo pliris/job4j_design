@@ -35,6 +35,7 @@ public class SimpleArray<T> implements Iterable<T> {
         if (index == Objects.checkIndex(index, position)) {
             array[index] = null;
             System.arraycopy(array, index + 1, array, index, position);
+            position--;
             rsl = true;
             }
 
@@ -43,7 +44,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
     public T get(int index) {
         T model = null;
-        if (index == Objects.checkIndex(index, array.length)) {
+        if (index == Objects.checkIndex(index, position)) {
             model = array[index];
         }
         return model;

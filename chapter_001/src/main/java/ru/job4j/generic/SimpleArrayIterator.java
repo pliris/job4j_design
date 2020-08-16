@@ -6,6 +6,7 @@ import java.util.NoSuchElementException;
 public class SimpleArrayIterator<T> implements Iterator<T> {
         private T[] array;
         private int position = 0;
+        private int cursor = 0;
 
         public SimpleArrayIterator(T[] array) {
             this.array = array;
