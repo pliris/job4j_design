@@ -1,9 +1,10 @@
 package ru.job4j.generic;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public final class MemStore<T extends Base> implements Store<T> {
+public final class MemStore<T extends Base> implements Store<T>, Iterable<T> {
     private final List<T> mem = new ArrayList<>();
 
     @Override
@@ -30,8 +31,21 @@ public final class MemStore<T extends Base> implements Store<T> {
 
     @Override
     public T findById(String id) {
-        return mem.stream()
-                .filter(t -> t.getId().equals(id))
-                .findFirst().orElse(null);
+        T model = null;
+//        return mem.stream()
+//                .filter(t -> t.getId().equals(id))
+//                .findFirst().orElse(null);
+    while (mem.iterator().hasNext()) {
+        model = mem.iterator().next();
+        if (model.getId().equals(id)) {
+            break;
+        }
+    }
+    return model;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new SimpleArrayIterator(mem.toArray());
     }
 }
