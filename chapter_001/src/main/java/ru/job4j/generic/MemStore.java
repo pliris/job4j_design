@@ -1,11 +1,9 @@
 package ru.job4j.generic;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-public final class MemStore<T extends Base> implements Store<T>, Iterable<T> {
-
+public final class MemStore<T extends Base> implements Store<T> {
     private final List<T> mem = new ArrayList<>();
 
     @Override
@@ -15,29 +13,25 @@ public final class MemStore<T extends Base> implements Store<T>, Iterable<T> {
 
     @Override
     public boolean replace(String id, T model) {
-        if (mem.contains(id)) {
-           mem.indexOf(id)
+        boolean done = false;
+        int i = mem.indexOf(this.findById(id));
+        if (i >= 0) {
+            mem.set(i, model);
+            done = true;
         }
-        return mem.i;
+        return done;
     }
 
     @Override
     public boolean delete(String id) {
-        return mem.remove(id);
+        T model = this.findById(id);
+        return mem.remove(model);
     }
 
     @Override
     public T findById(String id) {
-        T model = null;
-        if (mem.contains(id)) {
-
-
-        }
-        return null;
-    }
-
-    @Override
-    public Iterator<T> iterator() {
-        return null;
+        return mem.stream()
+                .filter(t -> t.getId().equals(id))
+                .findFirst().orElse(null);
     }
 }

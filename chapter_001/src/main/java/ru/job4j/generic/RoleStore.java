@@ -1,7 +1,6 @@
 package ru.job4j.generic;
 
 public class RoleStore implements Store<Role> {
-
     private final Store<Role> store = new MemStore<Role>();
 
     @Override
@@ -11,7 +10,7 @@ public class RoleStore implements Store<Role> {
 
     @Override
     public boolean replace(String id, Role model) {
-        return false;
+        return store.replace(id, model);
     }
 
     @Override
@@ -21,6 +20,6 @@ public class RoleStore implements Store<Role> {
 
     @Override
     public Role findById(String id) {
-        return null;
+        return store.findById(id);
     }
 }
