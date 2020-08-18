@@ -1,10 +1,12 @@
 package ru.job4j.generic;
 
+import javax.crypto.spec.OAEPParameterSpec;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
-public final class MemStore<T extends Base> implements Store<T>, Iterable<T> {
+public final class MemStore<T extends Base> implements Store<T> {
     private final List<T> mem = new ArrayList<>();
 
     @Override
@@ -25,27 +27,18 @@ public final class MemStore<T extends Base> implements Store<T>, Iterable<T> {
 
     @Override
     public boolean delete(String id) {
-        T model = this.findById(id);
-        return mem.remove(model);
+        Optional<T> model = Optional.of(this.findById(id));
+        if (model.isPresent()) {
+            return mem.remove(model);
+        } else {
+            return false;
+        }
     }
 
     @Override
     public T findById(String id) {
-        T model = null;
-//        return mem.stream()
-//                .filter(t -> t.getId().equals(id))
-//                .findFirst().orElse(null);
-    while (mem.iterator().hasNext()) {
-        model = mem.iterator().next();
-        if (model.getId().equals(id)) {
-            break;
-        }
-    }
-    return model;
-    }
-
-    @Override
-    public Iterator<T> iterator() {
-        return new SimpleArrayIterator(mem.toArray());
+        return mem.stream()
+                .filter(t -> t.getId().equals(id))
+                .findFirst().orElse(null);
     }
 }

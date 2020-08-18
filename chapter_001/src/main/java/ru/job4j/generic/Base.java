@@ -1,7 +1,7 @@
 package ru.job4j.generic;
 
 public abstract class Base {
-    private final String id;
+    private String id;
 
     protected Base(final String id) {
         this.id = id;
