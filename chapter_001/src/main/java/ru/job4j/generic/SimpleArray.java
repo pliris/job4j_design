@@ -7,6 +7,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
     private T[] array;
     private int position = 0;
+    private int size;
 
     public SimpleArray(int size) {
         this.array = (T[]) new Object[size];
@@ -16,6 +17,7 @@ public class SimpleArray<T> implements Iterable<T> {
         boolean rsl = false;
         if (position < array.length - 1) {
             array[position++] = model;
+            this.size++;
             rsl = true;
         }
         return rsl;
@@ -33,10 +35,10 @@ public class SimpleArray<T> implements Iterable<T> {
     public boolean remove(int index) {
         boolean rsl = false;
         if (index == Objects.checkIndex(index, position)) {
-            array[index] = null;
             System.arraycopy(array, index + 1, array, index, position);
             position--;
             rsl = true;
+            this.size--;
             }
 
         return rsl;
@@ -52,6 +54,6 @@ public class SimpleArray<T> implements Iterable<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new SimpleArrayIterator(array);
+        return new SimpleArrayIterator(array, size);
     }
 }
