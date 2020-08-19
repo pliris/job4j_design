@@ -17,6 +17,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
     public SimpleArray(int size) {
         this.container = (T[]) new Object[size];
+        this.size = size;
     }
 
     public T get(int index) {
@@ -25,8 +26,9 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     public void add(T model) {
-        if (position > size) {
-            System.arraycopy(container, 0, container, 0, size + 1);
+        if (position >= size) {
+            T[] array = (T[]) new Object[size++];
+           System.arraycopy(container, 0, array, 0, size);
         }
         container[position++] = model;
         modCount++;
