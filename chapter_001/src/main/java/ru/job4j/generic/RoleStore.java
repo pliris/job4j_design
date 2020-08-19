@@ -22,4 +22,5 @@ public class RoleStore implements Store<Role> {
     public Role findById(String id) {
         return store.findById(id);
     }
+
 }
