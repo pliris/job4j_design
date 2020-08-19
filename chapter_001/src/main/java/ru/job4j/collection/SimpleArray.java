@@ -1,6 +1,5 @@
 package ru.job4j.collection;
 
-import java.lang.reflect.Array;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -36,17 +35,17 @@ public class SimpleArray<T> implements Iterable<T> {
     @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {
-            private T[] array;
-            private int expectedModCount = 0;
-            private int position = 0;
-            private int size = 0;
+            private T[] array = SimpleArray.this.container;
+            private int expectedModCount = SimpleArray.this.modCount;
+            private int cursor = 0;
+            private int size = SimpleArray.this.position;
 
             @Override
             public boolean hasNext() {
                 if (!checkModification(modCount)) {
                     throw new ConcurrentModificationException();
                 }
-                return position < size;
+                return cursor < size;
             }
 
             public boolean checkModification(int modCount) {
@@ -58,7 +57,7 @@ public class SimpleArray<T> implements Iterable<T> {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                return array[position++];
+                return array[cursor++];
             }
         };
     }
