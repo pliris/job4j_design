@@ -27,9 +27,10 @@ public final class MemStore<T extends Base> implements Store<T> {
 
     @Override
     public boolean delete(String id) {
-        T model = this.findById(id);
-        if (model != null) {
-            return mem.remove(model);
+        int index = this.findIndexById(id);
+        if (index != -1) {
+            mem.remove(index);
+            return true;
         } else {
             return false;
         }
@@ -42,11 +43,12 @@ public final class MemStore<T extends Base> implements Store<T> {
                 .findFirst().orElse(null);
     }
 
-    public int findIndexById(String id) {
+    private int findIndexById(String id) {
         int index = -1;
-        for (T t: mem) {
-            index++;
+        for (int i = 0; i < mem.size(); i++) {
+            T t = mem.get(i);
             if (t.getId().equals(id)) {
+                index = i;
                 break;
             }
         }
