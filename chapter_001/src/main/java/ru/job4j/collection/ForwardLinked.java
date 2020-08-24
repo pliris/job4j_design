@@ -48,7 +48,7 @@ public class ForwardLinked<T> implements Iterable<T> {
     }
 
     public void revert() {
-
+        this.add(this.deleteFirst());
     }
 
     @Override

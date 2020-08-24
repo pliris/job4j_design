@@ -55,3 +55,4 @@ public class ForwardLinkedTest {
         assertThat(it.next(), is(1));
     }
 }
+
