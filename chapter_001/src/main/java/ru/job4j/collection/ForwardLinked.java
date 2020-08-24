@@ -47,6 +47,10 @@ public class ForwardLinked<T> implements Iterable<T> {
         return model;
     }
 
+    public void revert() {
+
+    }
+
     @Override
     public Iterator<T> iterator() {
         return new Iterator<T>() {
