@@ -6,10 +6,10 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class SimpleLinked<T> implements Iterable<T> {
-    int size = 0;
-    Node<T> first;
-    Node<T> last;
-    int modCount = 0;
+    private int size = 0;
+    private Node<T> first;
+    private Node<T> last;
+    private int modCount = 0;
 
     public SimpleLinked() {
     }
@@ -74,11 +74,10 @@ public class SimpleLinked<T> implements Iterable<T> {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
             }
-                if (cursor > 0) {
-                    n = n.next;
-                }
+                T model = n.item;
+                n = n.next;
                 cursor++;
-                return n.item;
+                return model;
             }
         };
     }
