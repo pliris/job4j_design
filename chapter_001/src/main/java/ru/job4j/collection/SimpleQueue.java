@@ -6,8 +6,8 @@ public class SimpleQueue<T> {
     private final SimpleStack<T> in = new SimpleStack<>();
     private final SimpleStack<T> out = new SimpleStack<>();
 
-    public T pop() {
-        while (in.isEmpty()) {
+     public T pop() {
+        while (in.notEmpty()) {
             out.push(in.pop());
         }
         return out.pop();
