@@ -7,6 +7,7 @@ import java.util.NoSuchElementException;
 public class HashPair<K, V> implements Pair<K, V>, Iterable<K> {
     private NodePair<K, V>[] table;
     private int size;
+    private int numbers;
     private double loadTable;
 
     public HashPair() {
@@ -26,10 +27,10 @@ public class HashPair<K, V> implements Pair<K, V>, Iterable<K> {
         return index;
     }
 
-    private void checkSizeTable(NodePair<K, V>[] table) {
-        if (size + 1 >= size * loadTable) {
+    private void checkSizeTable() {
+        if (numbers + 1 >= this.size * loadTable) {
             this.size = size * 2;
-            this.table = Arrays.copyOf(table, size * 2);
+            this.table = Arrays.copyOf(table, size);
         }
     }
 
@@ -38,7 +39,7 @@ public class HashPair<K, V> implements Pair<K, V>, Iterable<K> {
         NodePair<K, V> nodePair;
         int hash = hash(key);
         int index = bucketIndex(hash);
-        checkSizeTable(this.table);
+        checkSizeTable();
         if (table[index] == null) {
             table[index] = new NodePair<>(key, value, null, hash);
             return true;
