@@ -1,6 +1,5 @@
 package ru.job4j.collection;
 
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -23,14 +22,19 @@ public class HashPair<K, V> implements Pair<K, V>, Iterable<K> {
 
     private int bucketIndex(int hash) {
         int index;
-        index = (this.size - 1) & hash;
+        index = (size - 1) & hash;
         return index;
     }
 
     private void checkSizeTable() {
-        if (numbers + 1 >= this.size * loadTable) {
-            this.size = size * 2;
-            this.table = Arrays.copyOf(table, size);
+        if (numbers + 1 >= size * loadTable) {
+            size = size * 2;
+            NodePair<K, V>[] tempTable = new NodePair[size];
+            for (int i = 0; i < table.length; i++) {
+                 int index = this.bucketIndex(table[i].hash);
+                 tempTable[index] = table[i];
+            }
+            table = tempTable;
         }
     }
 
@@ -38,10 +42,11 @@ public class HashPair<K, V> implements Pair<K, V>, Iterable<K> {
     public boolean insert(K key, V value) {
         NodePair<K, V> nodePair;
         int hash = hash(key);
-        int index = bucketIndex(hash);
+        int index = bucketIndex(hash(key));
         checkSizeTable();
         if (table[index] == null) {
             table[index] = new NodePair<>(key, value, null, hash);
+            numbers++;
             return true;
         }
         return false;
