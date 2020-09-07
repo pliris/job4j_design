@@ -1,6 +1,5 @@
 package ru.job4j.tree;
 
-import javax.management.modelmbean.ModelMBean;
 import java.util.*;
 
 class Tree<E> implements SimpleTree<E> {
@@ -8,6 +7,22 @@ class Tree<E> implements SimpleTree<E> {
 
     Tree(final E root) {
         this.root = new Node<>(root);
+    }
+
+    public boolean isBinary() {
+        Queue<Node<E>> list  = new LinkedList<>();
+        Node<E> tempNode;
+        boolean check = true;
+        list.add(this.root);
+        while (!list.isEmpty()) {
+            tempNode = list.poll();
+            if (tempNode.children.size() > 2) {
+                check = false;
+                break;
+            }
+            list.addAll(tempNode.children);
+        }
+        return check;
     }
 
     @Override
@@ -21,9 +36,7 @@ class Tree<E> implements SimpleTree<E> {
                 pNode.get().children.add(tempChild);
                 rsl = true;
             }
-
         }
-
         return rsl;
     }
 
