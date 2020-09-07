@@ -44,7 +44,7 @@ public class HashPair<K, V> implements Pair<K, V>, Iterable<K> {
         int hash = hash(key);
         int index = bucketIndex(hash(key));
         checkSizeTable();
-        if (table[index] == null) {
+        if (table[index].equals(null)) {
             table[index] = new NodePair<>(key, value, null, hash);
             numbers++;
             return true;
@@ -54,7 +54,7 @@ public class HashPair<K, V> implements Pair<K, V>, Iterable<K> {
 
     @Override
     public V get(K key) {
-        if (key == null) {
+        if (key.equals(null)) {
             return null;
         }
         int index = bucketIndex(hash(key));
@@ -64,7 +64,7 @@ public class HashPair<K, V> implements Pair<K, V>, Iterable<K> {
     @Override
     public boolean delete(K key) {
         int index = bucketIndex(hash(key));
-        if (table[index].key == key) {
+        if (table[index].key.equals(key)) {
             table[index] = null;
             return true;
         }
