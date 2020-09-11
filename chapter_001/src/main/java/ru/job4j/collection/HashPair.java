@@ -44,21 +44,27 @@ public class HashPair<K, V> implements Pair<K, V>, Iterable<K> {
         int hash = hash(key);
         int index = bucketIndex(hash(key));
         checkSizeTable();
-        if (table[index].equals(null)) {
+        if (table[index] == null) {
             table[index] = new NodePair<>(key, value, null, hash);
             numbers++;
             return true;
+        }
+        if (table[index].key.equals(key)) {
+            table[index].value = value;
         }
         return false;
     }
 
     @Override
     public V get(K key) {
-        if (key.equals(null)) {
+        if (key == null) {
             return null;
         }
         int index = bucketIndex(hash(key));
-        return table[index].value;
+        if (table[index].key.equals(key)) {
+            return table[index].value;
+        }
+       return null;
     }
 
     @Override
