@@ -31,8 +31,10 @@ public class HashPair<K, V> implements Pair<K, V>, Iterable<K> {
             size = size * 2;
             NodePair<K, V>[] tempTable = new NodePair[size];
             for (int i = 0; i < table.length; i++) {
-                 int index = this.bucketIndex(table[i].hash);
-                 tempTable[index] = table[i];
+                if (table[i] != null) {
+                    int index = this.bucketIndex(table[i].hash);
+                    tempTable[index] = table[i];
+                }
             }
             table = tempTable;
         }
@@ -51,6 +53,7 @@ public class HashPair<K, V> implements Pair<K, V>, Iterable<K> {
         }
         if (table[index].key.equals(key)) {
             table[index].value = value;
+            return true;
         }
         return false;
     }
