@@ -1,13 +1,16 @@
 package ru.job4j.collection;
 
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 public class HashPair<K, V> implements Pair<K, V>, Iterable<K> {
     private NodePair<K, V>[] table;
     private int size;
     private int numbers;
     private double loadTable;
+    private int modCount = 0;
 
     public HashPair() {
         this.table = new NodePair[16];
@@ -49,10 +52,13 @@ public class HashPair<K, V> implements Pair<K, V>, Iterable<K> {
         if (table[index] == null) {
             table[index] = new NodePair<>(key, value, null, hash);
             numbers++;
+            modCount++;
             return true;
         }
-        if (table[index].key.equals(key)) {
+        if (Objects.equals(table[index].key, key)) {
             table[index].value = value;
+            numbers++;
+            modCount++;
             return true;
         }
         return false;
@@ -60,11 +66,8 @@ public class HashPair<K, V> implements Pair<K, V>, Iterable<K> {
 
     @Override
     public V get(K key) {
-        if (key == null) {
-            return null;
-        }
         int index = bucketIndex(hash(key));
-        if (table[index].key.equals(key)) {
+        if (Objects.equals(table[index].key, key)) {
             return table[index].value;
         }
        return null;
@@ -73,8 +76,10 @@ public class HashPair<K, V> implements Pair<K, V>, Iterable<K> {
     @Override
     public boolean delete(K key) {
         int index = bucketIndex(hash(key));
-        if (table[index].key.equals(key)) {
+        if (Objects.equals(table[index].key, key)) {
             table[index] = null;
+            numbers--;
+            modCount++;
             return true;
         }
         return false;
@@ -86,13 +91,21 @@ public class HashPair<K, V> implements Pair<K, V>, Iterable<K> {
             private NodePair<K, V> next;
             private int cursor = 0;
             private int size = HashPair.this.size;
+            private final int expectedModCount = HashPair.this.modCount;
 
             @Override
             public boolean hasNext() {
+                if (!checkModification(modCount)) {
+                    throw new ConcurrentModificationException();
+                }
                while (next == null && cursor < size) {
                    next = table[cursor++];
                }
                 return next != null;
+            }
+
+            private boolean checkModification(int modCount) {
+                return expectedModCount == modCount;
             }
 
             @Override
