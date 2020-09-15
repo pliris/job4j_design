@@ -52,9 +52,9 @@ public class SimpleQueueTest {
         queue.pop();
         queue.push(5);
         int rsl = queue.pop();
-        assertThat(rsl, is(1));
-        rsl = queue.pop();
         assertThat(rsl, is(2));
+        rsl = queue.pop();
+        assertThat(rsl, is(3));
 
     }
 }
