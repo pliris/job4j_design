@@ -5,24 +5,36 @@ import java.util.*;
 public class Analyze {
 
     public Info diff(List<User> previous, List<User> current) {
-        Map<Integer, String> usersMap = new HashMap<>();
+        Map<Integer, User> usersMap = new HashMap<>();
         List<User> usersAdd = new ArrayList<>(current);
         Info info = new Info();
 
         for (User user : current) {
-            usersMap.put(user.id, user.name);
+            usersMap.put(user.id, user);
         }
 
         for (User user : previous) {
-            if (!usersMap.containsKey(user.id)) {
-              info.deleted++;
-            } else if (!usersMap.containsValue(user.name)) {
+            User temp = usersMap.remove(user.id);
+            if (temp == null) {
+                info.deleted++;
+            } else if (!Objects.equals(temp, user)) {
                 info.changed++;
             }
         }
-        info.added = current.size() - (previous.size() - info.deleted);
-        return info;
+        info.added = usersMap.size();
+        return  info;
     }
+//
+//    for (User user : previous) {
+//            if (!usersMap.containsKey(user.id)) {
+//              info.deleted++;
+//            } else if (!usersMap.containsValue(user.name)) {
+//                info.changed++;
+//            }
+//        }
+//        info.added = current.size() - (previous.size() - info.deleted);
+//        return info;
+//    }
 
     public static class User {
         int id;
