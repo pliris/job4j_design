@@ -24,17 +24,6 @@ public class Analyze {
         info.added = usersMap.size();
         return  info;
     }
-//
-//    for (User user : previous) {
-//            if (!usersMap.containsKey(user.id)) {
-//              info.deleted++;
-//            } else if (!usersMap.containsValue(user.name)) {
-//                info.changed++;
-//            }
-//        }
-//        info.added = current.size() - (previous.size() - info.deleted);
-//        return info;
-//    }
 
     public static class User {
         int id;
