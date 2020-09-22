@@ -2,33 +2,36 @@ package ru.job4j.exam;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Mail {
-     public void unitMail(Map<User, List<Email>> accounts) {
-        Map<User, List<Email>> mapUser = new HashMap<>();
-        Map<Email, List<User>> mapEmail = new HashMap<>();
-        Map<String, String> mapStr = new HashMap<>();
-       // Set<User, List<Email>> userSet = new HashSet<>();
-        List<Email> listEmail = new ArrayList<>();
+    Map<User, Email> mapUser = new HashMap<>();
 
-        for (User user : accounts.keySet()) {
-            listEmail = accounts.get(user);
-            for (Email email : listEmail) {
-                if (mapUser.containsValue(email)) {
-                    Set<Map.Entry<User, List<Email>>> temp = mapUser.entrySet();
-                    User tempUser = temp.stream().filter(u ->);
-                    mapEmail.merge(mapUser.get(), user);
-                } else {
+     public void unitMail(Map<Email, User> accounts) {
 
-                }
+         for (Email email : accounts.keySet()) {
+             User user = accounts.get(email);
+             if (mapUser.containsValue(email)) {
+                    this.addEmail(email);
+             } else {
+                 mapUser.put(user, email);
+             }
+         }
+     }
+
+    private User addEmail(Email email) {
+    Iterator<User> it = this.mapUser.keySet().iterator();
+    User tempUser = null;
+    Email tempEmail = null;
+    while (it.hasNext()) {
+        tempUser = it.next();
+        tempEmail = this.mapUser.get(tempUser);
+            if (tempEmail.getEmail().equals(email)) {
+                break;
             }
-
         }
-
-
-
-
-    }
+    return tempUser;
+     }
 
 
     public class User {
@@ -60,6 +63,19 @@ public class Mail {
 
         public void setEmail(String email) {
             this.email = email;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Email email1 = (Email) o;
+            return Objects.equals(email, email1.email);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(email);
         }
     }
 }
