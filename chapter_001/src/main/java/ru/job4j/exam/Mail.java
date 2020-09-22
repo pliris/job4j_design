@@ -1,20 +1,26 @@
 package ru.job4j.exam;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Mail {
-     public void unitMail(Map<Email, List<User>> accounts) {
+     public void unitMail(Map<User, List<Email>> accounts) {
         Map<User, List<Email>> mapUser = new HashMap<>();
         Map<Email, List<User>> mapEmail = new HashMap<>();
         Map<String, String> mapStr = new HashMap<>();
-        List<User> listUser = new ArrayList<>();
+       // Set<User, List<Email>> userSet = new HashSet<>();
+        List<Email> listEmail = new ArrayList<>();
 
-        for (Email email : accounts.keySet()) {
-            listUser = accounts.get(email);
-            if (mapUser.containsKey(email)) {
-                mapEmail.merge(email, user);
-            } else {
+        for (User user : accounts.keySet()) {
+            listEmail = accounts.get(user);
+            for (Email email : listEmail) {
+                if (mapUser.containsValue(email)) {
+                    Set<Map.Entry<User, List<Email>>> temp = mapUser.entrySet();
+                    User tempUser = temp.stream().filter(u ->);
+                    mapEmail.merge(mapUser.get(), user);
+                } else {
 
+                }
             }
 
         }
@@ -23,6 +29,7 @@ public class Mail {
 
 
     }
+
 
     public class User {
          private String name;
