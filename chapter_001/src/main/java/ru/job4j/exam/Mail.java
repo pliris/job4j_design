@@ -1,45 +1,59 @@
 package ru.job4j.exam;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Mail {
-    Map<User, Email> mapUser = new HashMap<>();
 
-     public void unitMail(Map<Email, User> accounts) {
 
+    private Map<User, Set<Email>> mapUser = new HashMap<>();
+
+     public Map<User, Set<Email>> unitMail(Map<Email, User> accounts) {
+        Set<Email> setEmails = null;
          for (Email email : accounts.keySet()) {
              User user = accounts.get(email);
              if (mapUser.containsValue(email)) {
-                    this.addEmail(email);
+                 User tempUser = this.findUserByEmail(email);
+                 setEmails = this.findSetEmails(tempUser);
+                 setEmails.add(email);
+                 mapUser.remove(user);
+             } else if (this.findSetEmails(user) == null) {
+                 mapUser.put(user, Set.of(email));
              } else {
-                 mapUser.put(user, email);
+                 setEmails = this.findSetEmails(user);
+                 mapUser.put(user, setEmails);
              }
          }
+         return this.mapUser;
      }
 
-    private User addEmail(Email email) {
+     private Set<Email> findSetEmails(User user) {
+         return this.mapUser.get(user);
+     }
+
+    private User findUserByEmail(Email email) {
     Iterator<User> it = this.mapUser.keySet().iterator();
     User tempUser = null;
-    Email tempEmail = null;
+    Set<Email> settEmail;
     while (it.hasNext()) {
         tempUser = it.next();
-        tempEmail = this.mapUser.get(tempUser);
-            if (tempEmail.getEmail().equals(email)) {
+        settEmail = this.findSetEmails(tempUser);
+        for (Email tempEmail : settEmail) {
+            if (tempEmail.equals(email)) {
                 break;
             }
         }
+    }
     return tempUser;
      }
 
 
-    public class User {
+    public static class User {
          private String name;
 
          public User(String name) {
              this.name = name;
          }
+
 
         public String getName() {
             return name;
@@ -50,7 +64,7 @@ public class Mail {
         }
     }
 
-    public class Email {
+    public static class Email {
          private String email;
 
          public Email(String email) {
