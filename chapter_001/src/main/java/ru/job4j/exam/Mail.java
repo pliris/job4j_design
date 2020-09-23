@@ -1,6 +1,7 @@
 package ru.job4j.exam;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Mail {
     private Map<User, Set<Email>> mapUser = new HashMap<>();
@@ -10,10 +11,18 @@ public class Mail {
          for (User user : accounts.keySet()) {
              Set<Email> emails = accounts.get(user);
              for (Email tempEmail : emails) {
-                 if (mapUser.containsValue(tempEmail)) {
+                 if (this.findUserByEmail(tempEmail) != null) {
                      User tempUser = this.findUserByEmail(tempEmail);
                      setEmails = this.findSetEmails(tempUser);
-                     setEmails.add(tempEmail);
+                   //  setEmails.add(tempEmail);
+//                     emails = setEmails.stream().
+//                             filter(e -> e.equals(tempEmail)).
+//                             collect(Collectors.toSet());
+                     mapUser.put(user, setEmails.stream().
+                             filter(e -> !e.equals(tempEmail)).
+                             collect(Collectors.toSet()));
+                     mapUser.remove(tempUser, setEmails);
+
                  } else if (this.findSetEmails(user) == null) {
                      Set<Email> tempSet = new HashSet<>();
                      tempSet.add(tempEmail);
@@ -33,18 +42,19 @@ public class Mail {
 
     private User findUserByEmail(Email email) {
     Iterator<User> it = this.mapUser.keySet().iterator();
-    User tempUser = null;
+    User user = null;
     Set<Email> setEmail;
     while (it.hasNext()) {
-        tempUser = it.next();
+        User tempUser = it.next();
         setEmail = this.findSetEmails(tempUser);
         for (Email tempEmail : setEmail) {
             if (tempEmail.equals(email)) {
+                user = tempUser;
                 break;
             }
         }
     }
-    return tempUser;
+    return user;
      }
 
 
