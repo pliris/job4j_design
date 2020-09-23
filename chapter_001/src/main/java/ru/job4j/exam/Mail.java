@@ -3,24 +3,25 @@ package ru.job4j.exam;
 import java.util.*;
 
 public class Mail {
-
-
     private Map<User, Set<Email>> mapUser = new HashMap<>();
 
-     public Map<User, Set<Email>> unitMail(Map<Email, User> accounts) {
-        Set<Email> setEmails = null;
-         for (Email email : accounts.keySet()) {
-             User user = accounts.get(email);
-             if (mapUser.containsValue(email)) {
-                 User tempUser = this.findUserByEmail(email);
-                 setEmails = this.findSetEmails(tempUser);
-                 setEmails.add(email);
-                 mapUser.remove(user);
-             } else if (this.findSetEmails(user) == null) {
-                 mapUser.put(user, Set.of(email));
-             } else {
-                 setEmails = this.findSetEmails(user);
-                 mapUser.put(user, setEmails);
+     public Map<User, Set<Email>> unitMail(Map<User, Set<Email>> accounts) {
+        Set<Email> setEmails = new HashSet<>();
+         for (User user : accounts.keySet()) {
+             Set<Email> emails = accounts.get(user);
+             for (Email tempEmail : emails) {
+                 if (mapUser.containsValue(tempEmail)) {
+                     User tempUser = this.findUserByEmail(tempEmail);
+                     setEmails = this.findSetEmails(tempUser);
+                     setEmails.add(tempEmail);
+                 } else if (this.findSetEmails(user) == null) {
+                     Set<Email> tempSet = new HashSet<>();
+                     tempSet.add(tempEmail);
+                     mapUser.put(user, tempSet);
+                 } else {
+                     setEmails = this.findSetEmails(user);
+                     setEmails.add(tempEmail);
+                 }
              }
          }
          return this.mapUser;
@@ -33,11 +34,11 @@ public class Mail {
     private User findUserByEmail(Email email) {
     Iterator<User> it = this.mapUser.keySet().iterator();
     User tempUser = null;
-    Set<Email> settEmail;
+    Set<Email> setEmail;
     while (it.hasNext()) {
         tempUser = it.next();
-        settEmail = this.findSetEmails(tempUser);
-        for (Email tempEmail : settEmail) {
+        setEmail = this.findSetEmails(tempUser);
+        for (Email tempEmail : setEmail) {
             if (tempEmail.equals(email)) {
                 break;
             }
