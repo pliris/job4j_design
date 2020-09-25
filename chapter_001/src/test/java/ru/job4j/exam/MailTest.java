@@ -12,15 +12,17 @@ public class MailTest {
 
     @Test
     public void whenThen() {
-        Set<Mail.User> set = new HashSet<>();
-        set.add(new Mail.User("user1", new HashSet<>(Set.of(("xxx@ya.ru"),                ("foo@gmail.com"),
+    Set<Mail.User> set = new HashSet<>();
+        set.add(new Mail.User("user1", new HashSet<>(Set.of(("xxx@ya.ru"), ("foo@gmail.com"),
                 ("lol@mail.ru")))));
-        set.add(new Mail.User("user3", new HashSet<>(Set.of(
+       set.add(new Mail.User("user3", new HashSet<>(Set.of(
                 ("xyz@pisem.net"),
                 ("vasya@pupkin.com")))));
         set.add(new Mail.User("user5", new HashSet<>(Set.of(
                 ("xyz@pisem.net")))));
-        set = new Mail().process(set);
+        Mail mail = new Mail();
+        mail.process(set);
+        Set<Mail.User> actual = mail.setUsers;
 
         Set<Mail.User> exp = new HashSet<>();
         exp.add(new Mail.User("user1", new HashSet<>(Set.of(("xxx@ya.ru"),
@@ -29,9 +31,38 @@ public class MailTest {
         exp.add(new Mail.User("user5", new HashSet<>(Set.of(
                 ("vasya@pupkin.com"),
                 ("xyz@pisem.net")))));
-        assertEquals(exp, set);
+      assertThat(actual, is (exp));
+
 
     }
+
+
+
+
+
+
+//    @Test
+//    public void whenThen() {
+//        Set<Mail.User> set = new HashSet<>();
+//        set.add(new Mail.User("user1", new HashSet<>(Set.of(("xxx@ya.ru"), ("foo@gmail.com"),
+//                ("lol@mail.ru")))));
+//        set.add(new Mail.User("user3", new HashSet<>(Set.of(
+//                ("xyz@pisem.net"),
+//                ("vasya@pupkin.com")))));
+//        set.add(new Mail.User("user5", new HashSet<>(Set.of(
+//                ("xyz@pisem.net")))));
+//        set = new Mail().process(set);
+//
+//        Set<Mail.User> exp = new HashSet<>();
+//        exp.add(new Mail.User("user1", new HashSet<>(Set.of(("xxx@ya.ru"),
+//                ("foo@gmail.com"),
+//                ("lol@mail.ru")))));
+//        exp.add(new Mail.User("user5", new HashSet<>(Set.of(
+//                ("vasya@pupkin.com"),
+//                ("xyz@pisem.net")))));
+//        assertEquals(exp, set);
+//
+//    }
 
 //    @Test
 //    public void whenThen() {
