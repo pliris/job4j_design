@@ -32,7 +32,6 @@ public class AnalizyTest {
                 BufferedReader buffer = new BufferedReader(reader);) {
            buffer.lines().forEach(rsl::append);
         }
-        assertThat(rsl, is(" 10:57:01; 10:59:01; 11:01:02; 11:02:02;"));
+        assertEquals(rsl.toString(), " 10:57:01; 10:59:01; 11:01:02; 11:02:02;");
         }
-
 }
