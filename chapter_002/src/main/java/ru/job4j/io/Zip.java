@@ -93,10 +93,10 @@ public class Zip {
     }
 
     public static void main(String[] args) throws IOException {
-//        new Zip().packSingleFile(
-//                Paths.get("./chapter_003/pom.xml"),
-//                Paths.get("./chapter_003/pom.zip")
-//        );
+        new Zip().packSingleFile(
+                Paths.get("./chapter_003/pom.xml"),
+                Paths.get("./chapter_003/pom.zip")
+        );
         Zip zip = new Zip();
         ArgZip arg = new ArgZip(args);
         if (arg.valid()) {

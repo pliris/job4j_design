@@ -1,7 +1,6 @@
 package ru.job4j.io;
 
 public class ArgZip {
-
     private final String[] args;
 
     public ArgZip(String[] args) {
