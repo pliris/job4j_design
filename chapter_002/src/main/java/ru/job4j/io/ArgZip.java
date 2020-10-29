@@ -9,18 +9,18 @@ public class ArgZip {
     }
 
     public boolean valid() {
-        return args.length == 3;
+        return args.length == 6;
     }
 
     public String directory() {
-        return args[0];
-    }
-
-    public String exclude() {
         return args[1];
     }
 
+    public String exclude() {
+        return args[3];
+    }
+
     public String output() {
-        return args[2];
+        return args[5];
     }
 }

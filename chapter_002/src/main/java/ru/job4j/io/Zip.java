@@ -3,42 +3,43 @@ package ru.job4j.io;
 import java.io.*;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class Zip {
-    public void packFiles(List<Path> sources, Path target) {
+    public void packFiles(List<Path> sources, Path target, Path directory) {
         try (FileOutputStream fileOut = new FileOutputStream(target.toString());
              BufferedOutputStream bufferOut = new BufferedOutputStream(fileOut);
              ZipOutputStream zip = new ZipOutputStream(bufferOut)) {
             for (Path source : sources) {
                 if (source.toFile().isDirectory()) {
-                    zip.putNextEntry(new ZipEntry(source.toFile().getAbsolutePath().toString()));
+                    packFiles(Files.list(source).collect(Collectors.toList()), target, directory);
+                    continue;
                 } else {
                     try (FileInputStream fileIn = new FileInputStream(source.toString());
                          BufferedInputStream bufferIn = new BufferedInputStream(fileIn)) {
-                        zip.putNextEntry(new ZipEntry(source.toString()));
+                        zip.putNextEntry(new ZipEntry(directory.relativize(source).toString()));
                         zip.write(bufferIn.readAllBytes());
                         zip.closeEntry();
                     }
                 }
             }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+    }
 
-    public List<Path> getPath(Path root, String exclude) throws IOException {
+    public List<Path> getListPaths(Path root, String exclude) throws IOException {
         SearchDirect searcher = new SearchDirect(exclude);
         Files.walkFileTree(root, searcher);
         return searcher.getPaths();
     }
 
     static class SearchDirect implements FileVisitor<Path> {
-        private List<Path> pathsList = new ArrayList<>();
+        private List<Path> pathsList = new LinkedList<>();
         String exclude;
 
         SearchDirect(String exclude) {
@@ -55,9 +56,9 @@ public class Zip {
 
         @Override
         public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-           if (!file.toFile().getName().endsWith(exclude)) {
+            if (!file.toFile().getName().contains(exclude)) {
                 pathsList.add(file);
-           }
+            }
             return FileVisitResult.CONTINUE;
         }
 
@@ -81,8 +82,8 @@ public class Zip {
                 new BufferedOutputStream(
                         new FileOutputStream(target.getFileName().toString())))) {
             zip.putNextEntry(new ZipEntry(source.getFileName().toString()));
-             try (BufferedInputStream out = new BufferedInputStream(
-                        new FileInputStream(source.toString()))) {
+            try (BufferedInputStream out = new BufferedInputStream(
+                    new FileInputStream(source.toString()))) {
                 zip.write(out.readAllBytes());
                 zip.closeEntry();
             }
@@ -99,8 +100,10 @@ public class Zip {
         Zip zip = new Zip();
         ArgZip arg = new ArgZip(args);
         if (arg.valid()) {
-            List<Path> list = zip.getPath(Path.of(arg.directory()), arg.exclude());
-            zip.packFiles(list, Path.of(arg.output()));
+            List<Path> list = zip.getListPaths(Path.of(arg.directory()), arg.exclude());
+            zip.packFiles(list, Path.of(arg.output()), Path.of(arg.directory()));
+        } else {
+            throw new IllegalArgumentException("Incorrect arguments");
         }
 
     }
