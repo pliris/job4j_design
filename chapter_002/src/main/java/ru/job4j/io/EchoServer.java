@@ -16,7 +16,6 @@ public class EchoServer {
                     String str;
                     while (!(str = in.readLine()).isEmpty()) {
                         if (str.contains("Bye")) {
-                            server.close();
                             work = false;
                             break;
                         }
