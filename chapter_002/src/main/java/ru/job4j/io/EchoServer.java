@@ -8,6 +8,7 @@ public class EchoServer {
     public static void main(String[] args) {
         try (ServerSocket server = new ServerSocket(9000)) {
             boolean work = true;
+            StringBuilder builder = new StringBuilder();
             while (work) {
                 Socket socket = server.accept();
                 try (OutputStream out = socket.getOutputStream();
@@ -15,7 +16,7 @@ public class EchoServer {
                              new InputStreamReader(socket.getInputStream()))) {
                     String str;
                     while (!(str = in.readLine()).isEmpty()) {
-                        if (str.contains("?msg=")) {
+                        if (str.contains("?msg=") && str.contains("GET")) {
                             if (str.contains("Hello")) {
                                 out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
                                 out.write("Hello, dear friend.".getBytes());
@@ -26,8 +27,12 @@ public class EchoServer {
                                 socket.close();
                                 break;
                             } else {
+                                int b = str.indexOf("msg=");
+                                int e = str.indexOf("HTTP/1.1");
+                                builder.append(str.subSequence(b + 4, e - 1));
                                 out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
-                                out.write("Any, dear friend.".getBytes());
+                                out.write((builder.toString() + ", dear friend.").getBytes());
+                                builder.setLength(0);
                             }
                         }
                     }
