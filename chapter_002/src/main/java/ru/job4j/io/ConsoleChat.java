@@ -8,6 +8,10 @@ import java.util.stream.Collectors;
 public class ConsoleChat {
     private final String path;
     private final String botAnswers;
+
+
+
+    private List<String> answers;
     private static final String OUT = "закончить";
     private static final String STOP = "стоп";
     private static final String CONTINUE = "продолжить";
@@ -17,11 +21,13 @@ public class ConsoleChat {
         this.botAnswers = botAnswers;
     }
 
+
     public void run() {
         Scanner sc = new Scanner(System.in);
         StringJoiner joiner = new StringJoiner(";" + System.lineSeparator());
         System.out.println("Начните диалог");
         boolean work = true;
+        setAnswers(this.botAnswers);
         while (sc.hasNext()) {
             String str = sc.nextLine().strip();
                 if (str.equals(STOP)) {
@@ -35,7 +41,7 @@ public class ConsoleChat {
                     break;
                 }
                 if (work) {
-                    String s = getAnswers(this.botAnswers);
+                    String s = getAnswer();
                     joiner.add(str);
                     joiner.add(s);
                     System.out.println(str + " - " + s);
@@ -43,10 +49,14 @@ public class ConsoleChat {
                     joiner.add(str);
                     System.out.println(str);
                 }
-
         }
         }
 
+    /**
+     * Метод записывает диалог в файл
+     * @param path путь до файла в который записывается диалог
+     * @param dialog диалог который требуется записать
+     */
     private void writeDialog(String path, String dialog) {
         try (BufferedWriter bufWriter = new BufferedWriter(new FileWriter(path, StandardCharsets.UTF_8, true));) {
             bufWriter.write(dialog);
@@ -56,25 +66,25 @@ public class ConsoleChat {
         }
     }
 
-//    private List<String> getListAnswers(String botAnswers) {
-//        List<String> answers = null;
-//        try (BufferedReader bufReader = new BufferedReader(new FileReader(botAnswers));) {
-//            answers = bufReader.lines().collect(Collectors.toList());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return answers;
-//    }
+    /**
+     * Метод создаёт список ответов бота
+     * @param botAnswers путь до файла с ответами бота
+     */
+    private void setAnswers(String botAnswers) {
+        try (BufferedReader bufReader = new BufferedReader(new FileReader(botAnswers));) {
+            this.answers = bufReader.lines().collect(Collectors.toList());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-    private String getAnswers(String botAnswers) {
-        List<String> answers = new ArrayList<>();
-            try (BufferedReader bufReader = new BufferedReader(new FileReader(botAnswers));) {
-                answers = bufReader.lines().collect(Collectors.toList());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            int index = (int) (Math.random() * answers.size());
-            return answers.get(index);
+    /**
+     * Метод возвращает ответ бота
+     * @return возвращает случайный ответ бота
+     */
+    private String getAnswer() {
+            int index = (int) (Math.random() * this.answers.size());
+            return this.answers.get(index);
         }
 
 
