@@ -21,10 +21,15 @@ public class ArgsName {
  * @param args - массив параметров
  */
     private void parse(String[] args) {
-       values = Arrays.stream(args)
+       Arrays.stream(args)
                .map(s -> s.substring(1))
                .map(s -> s.split("="))
-               .collect(Collectors.toMap(s -> s[0], s -> s[1]));
+               .forEach(s -> {
+                   if (s.length != 2) {
+                       throw new IllegalArgumentException("Некорректная разбивка на ключ, значение");
+                   }
+                   this.values.put(s[0], s[1]);
+               });
     }
 
     public static ArgsName of(String[] args) {
@@ -38,6 +43,6 @@ public class ArgsName {
         System.out.println(jvm.get("Xmx"));
 
         ArgsName zip = ArgsName.of(new String[] {"-out=project.zip", "-encoding=UTF-8"});
-        System.out.println(jvm.get("out"));
+        System.out.println(zip.get("out"));
     }
 }
