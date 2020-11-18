@@ -10,7 +10,7 @@ public class JSonApartment {
     private long price;
     private boolean balcony;
     private String address;
-    private Integer[] squareRooms;
+    private int[] squareRooms;
     private Bed bed;
 
 
@@ -25,7 +25,7 @@ public class JSonApartment {
                 + '}';
     }
 
-    public JSonApartment(long price, boolean balcony, String address, Integer[] squareRooms, Bed bed) {
+    public JSonApartment(long price, boolean balcony, String address, int[] squareRooms, Bed bed) {
         this.price = price;
         this.balcony = balcony;
         this.address = address;
@@ -35,7 +35,7 @@ public class JSonApartment {
 
     public static void main(String[] args) {
         Apartment apartToJson = new Apartment(3450000, true,
-                "Arkhangelsk, Northern Dvina 118, 92", new Integer[]{12, 20, 8}, new Bed("white"));
+                "Arkhangelsk, Northern Dvina 118, 92", new int[] {12, 20, 8}, new Bed("white"));
         Gson gson = new GsonBuilder().create();
         System.out.println(gson.toJson(apartToJson));
 
