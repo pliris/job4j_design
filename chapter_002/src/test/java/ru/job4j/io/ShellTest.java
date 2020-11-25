@@ -10,18 +10,18 @@ public class ShellTest {
     @Test
     public void whenCdBack() {
         Shell shell = new Shell();
-        shell.cd("\\user\\..");
+        shell.cd("/user/..");
         assertThat(
-                shell.pwd(), is("\\")
+                shell.pwd(), is("/")
         );
     }
 
     @Test
     public void whenCdRoot() {
         Shell shell = new Shell();
-        shell.cd("\\");
+        shell.cd("/");
         assertThat(
-                shell.pwd(), is("\\")
+                shell.pwd(), is("/")
         );
     }
 
@@ -31,7 +31,7 @@ public class ShellTest {
         shell.cd("user");
         shell.cd("local");
         assertThat(
-                shell.pwd(), is("\\user\\local")
+                shell.pwd(), is("/user/local")
         );
     }
 
@@ -41,7 +41,7 @@ public class ShellTest {
         shell.cd("user");
         shell.cd("..");
         assertThat(
-                shell.pwd(), is("\\")
+                shell.pwd(), is("/")
         );
     }
 }
