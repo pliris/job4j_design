@@ -1,0 +1,10 @@
+insert into roles(roles) values('root');
+insert into category(category) values('super');
+insert into rules(rules) values('wre');
+insert into states(state) values('actual');
+insert into users(name) values('Nikita');
+insert into users(name) values('Nikita');
+insert into item(item) values('secret');
+insert into comments(comments) values('very very fast');
+insert into attachs(attachs) values('{"name":"Kevin Durant"}');
+insert into role_rules(role_id, rules_id) values(1, 1);
