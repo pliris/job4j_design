@@ -21,7 +21,7 @@ create table vehicle(
 
 
 insert into bodys(body)
-values('sedan'),('universal'),('hatchback');
+values('sedan'),('universal'),('hatchback'), ('telega');
 insert into engines(type, power)
 values('gas', '170'),
 		('gas', '110'),
@@ -50,13 +50,21 @@ values ('chevrolet lacetti', '1', '1', '1'),
 
 select v.model, b.body, e.type, e.power, t.type
 from vehicle as v
-left join engines as e on v.engine_id = e.id
-left join bodys as b on v.body_id = b.id
-left join transmissions as t on v.transmission_id = t.id;
+         join engines as e on v.engine_id = e.id
+         join bodys as b on v.body_id = b.id
+         join transmissions as t on v.transmission_id = t.id;
+
 
 select *
-from vehicle
-full join bodys b on b.id = vehicle.body_id
-full join engines e on e.id = vehicle.engine_id
-full join transmissions t on t.id = vehicle.transmission_id
-where vehicle.body_id is null or vehicle.engine_id is null or vehicle.transmission_id is null;
+from bodys as b
+         left join vehicle on b.id = vehicle.body_id
+where vehicle.body_id is null;
+select *
+from engines as e
+         left join vehicle on e.id = vehicle.engine_id
+where vehicle.engine_id is null;
+
+select *
+from transmissions as t
+         left join vehicle as v on v.transmission_id = t.id
+where v.transmission_id is null;
