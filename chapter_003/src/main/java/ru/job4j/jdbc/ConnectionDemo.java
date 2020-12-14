@@ -9,34 +9,26 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class ConnectionDemo {
-    String user;
-    String pwd;
-    String url;
+    private Properties properties;
 
     public void loadProperties() {
         Properties properties = new Properties();
         ClassLoader loader = ConnectionDemo.class.getClassLoader();
         try (InputStream io = loader.getResourceAsStream("app.properties")) {
             properties.load(io);
-            this.user = properties.get("user").toString();
-            this.pwd = properties.get("password").toString();
-            this.url = properties.get("url").toString();
-
+            this.setProperties(properties);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
-    public String getUser() {
-        return user;
+
+    public String getProperties(String str) {
+        return properties.get(str).toString();
     }
 
-    public String getPwd() {
-        return pwd;
-    }
-
-    public String getUrl() {
-        return url;
+    public void setProperties(Properties properties) {
+        this.properties = properties;
     }
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
@@ -52,9 +44,9 @@ public class ConnectionDemo {
         System.out.println("with use Properties and ClassLoader");
         ConnectionDemo connectionDemo = new ConnectionDemo();
         connectionDemo.loadProperties();
-        System.out.println(connectionDemo.getUser());
-        System.out.println(connectionDemo.getPwd());
-        System.out.println(connectionDemo.getUrl());
+        System.out.println(connectionDemo.getProperties("user"));
+        System.out.println(connectionDemo.getProperties("password"));
+        System.out.println(connectionDemo.getProperties("url"));
 
     }
 }
