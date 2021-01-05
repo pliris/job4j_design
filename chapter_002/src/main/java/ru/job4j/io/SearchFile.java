@@ -8,6 +8,7 @@ import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
@@ -16,7 +17,7 @@ public class SearchFile {
     private String dir;
     private String include;
     private String out;
-    private String argFind;
+    private String keyFind;
 
     /**
      * Конструктор, если аргументы получаем в виде массива
@@ -27,7 +28,7 @@ public class SearchFile {
         this.setDir();
         this.setInclude();
         this.setOut();
-        this.setArgFind();
+        this.setKeyFind();
     }
 
     /**
@@ -46,31 +47,54 @@ public class SearchFile {
      * @return список файлов удовлетворяющих требованиям
      * @throws IOException искллючение ввода-вывода при итерации по сущностям "Path"
      */
-    private List<Path> search(String dir, String include) throws IOException {
+//    private List<Path> search(String dir, String include, String key) throws IOException {
+//        Pattern pattern = Pattern.compile(include, Pattern.CASE_INSENSITIVE);
+//        SearcherFactory searcher = new SearcherFactory(pattern.asPredicate(), key);
+//        Files.walkFileTree(Path.of(dir), searcher);
+//        return searcher.getPaths();
+//    }
+    private List<Path> search(String dir, String include, String key) throws IOException {
         Pattern pattern = Pattern.compile(include, Pattern.CASE_INSENSITIVE);
-        SearchFiles searcher = new SearchFiles(pattern.asPredicate());
+        SearcherFactory searcher = new SearcherFactory(pattern.asPredicate(), key);
         Files.walkFileTree(Path.of(dir), searcher);
         return searcher.getPaths();
     }
 
-    static class SearchFiles extends SimpleFileVisitor<Path> {
-        private List<Path> pathsList = new ArrayList<>();
-        Predicate<String> filter;
-        SearchFiles(Predicate<String> filter) {
-            this.filter = filter;
-        }
 
-        @Override
-        public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-            if (filter.test(file.toString())) {
-                pathsList.add(file);
-            }
-            return super.visitFile(file, attrs);
-        }
-        public List<Path> getPaths() {
-            return pathsList;
-        }
-    }
+//    class SearchFiles extends SimpleFileVisitor<Path> {
+//        private List<Path> pathsList = new ArrayList<>();
+//        Predicate<String> filter = null;
+//        SearchFiles(Predicate<String> filter, String key) {
+//            if (key.contains("-n")) {
+//               NameSearcher name = new NameSearcher(filter);
+//               this.filter = name.filter;
+//            }
+//            if (key.contains("-f")) {
+//                FullNameSearcher fullName = new FullNameSearcher(filter);
+//                this.filter = fullName.filter;
+//            }
+//        }
+//        SearchFiles() {
+//        }
+//
+//        public List<Path> getPaths() {
+//            return pathsList;
+//        }
+//
+//
+//        class FullNameSearcher extends  SearchFiles {
+//            public FullNameSearcher(Predicate<String> predicate) {
+//                filter = s -> s.equals(predicate.toString());
+//            }
+//        }
+//        class NameSearcher extends SearchFiles {
+//            public NameSearcher(Predicate<String> predicate) {
+//                filter = s -> s.startsWith(predicate.toString());
+//            }
+//        }
+
+
+
 
     /**
      * Записываем список файлов в файл
@@ -96,7 +120,7 @@ public class SearchFile {
      */
 
     public void work() throws IOException {
-        writeResult(search(this.getDir(), getInclude()), getOut());
+        writeResult(search(this.getDir(), getInclude(), getKeyFind()), getOut());
     }
 
 
@@ -123,11 +147,11 @@ public class SearchFile {
     public void setOut() {
         this.out = argsSearch.out();
     }
-    public String getArgFind() {
-        return argFind;
+    public String getKeyFind() {
+        return keyFind;
     }
-    public void setArgFind() {
-        this.argFind = argsSearch.argFind();
+    public void setKeyFind() {
+        this.keyFind = argsSearch.argFind();
     }
 
 
