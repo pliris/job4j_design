@@ -12,17 +12,17 @@ public class HashPairTest {
     @Test
     public void insert3IntThenGet1() {
         HashPair<Integer, String> hashPair = new HashPair<>();
-        hashPair.insert(1,"First");
-        hashPair.insert(2,"Second");
-        hashPair.insert(3,"Third");
+        hashPair.insert(1, "First");
+        hashPair.insert(2, "Second");
+        hashPair.insert(3, "Third");
         assertThat(hashPair.get(3), is("Third"));
     }
 
     @Test
     public void insert2IntDelete1ThenTrue() {
         HashPair<Integer, String> hashPair = new HashPair<>();
-        hashPair.insert(1,"First");
-        hashPair.insert(2,"Second");
+        hashPair.insert(1, "First");
+        hashPair.insert(2, "Second");
         assertThat(hashPair.delete(2), is(true));
     }
 

@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class RoleStoreTest {
 
     @Test
-    public void WhenAdd2ElThenFind2El() {
+    public void whenAdd2ElThenFind2El() {
         Role role1 = new Role("Role #1");
         Role role2 = new Role("Role #2");
         RoleStore role = new RoleStore();
@@ -20,7 +20,7 @@ public class RoleStoreTest {
     }
 
     @Test
-    public void WhenAdd2ElAndReplaceSecondElThenFindEl() {
+    public void whenAdd2ElAndReplaceSecondElThenFindEl() {
         Role role1 = new Role("Role #1");
         Role role2 = new Role("Role #2");
         RoleStore role = new RoleStore();
@@ -32,7 +32,7 @@ public class RoleStoreTest {
     }
 
     @Test (expected = NullPointerException.class)
-    public void WhenAdd2ElAndDeleteFirstElThenFindReturnNull() {
+    public void whenAdd2ElAndDeleteFirstElThenFindReturnNull() {
         Role role1 = new Role("Role #1");
         Role role2 = new Role("Role #2");
         RoleStore role = new RoleStore();
@@ -43,7 +43,7 @@ public class RoleStoreTest {
     }
 
     @Test
-    public void WhenAdd2ElAndDoubleDeleteFirstElThenFindReturnNull() {
+    public void whenAdd2ElAndDoubleDeleteFirstElThenFindReturnNull() {
         Role role1 = new Role("Role #1");
         Role role2 = new Role("Role #2");
         RoleStore role = new RoleStore();

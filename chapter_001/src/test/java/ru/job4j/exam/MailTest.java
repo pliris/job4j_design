@@ -31,7 +31,7 @@ public class MailTest {
         exp.add(new Mail.User("user5", new HashSet<>(Set.of(
                 ("vasya@pupkin.com"),
                 ("xyz@pisem.net")))));
-      assertThat(actual, is (exp));
+      assertThat(actual, is(exp));
 
 
     }

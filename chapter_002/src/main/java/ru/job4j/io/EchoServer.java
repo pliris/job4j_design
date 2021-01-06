@@ -10,6 +10,7 @@ import java.net.Socket;
 public class EchoServer {
     private  static final Logger LOG = LoggerFactory.getLogger(UsageLog4j.class.getName());
 
+    @SuppressWarnings("checkstyle:InnerAssignment")
     public static void main(String[] args) {
         try (ServerSocket server = new ServerSocket(9000)) {
             boolean work = true;

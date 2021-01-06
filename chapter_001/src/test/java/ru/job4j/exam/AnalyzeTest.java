@@ -17,7 +17,7 @@ public class AnalyzeTest {
         List<Analyze.User> second = Arrays.asList(new Analyze.User(1, "Petr"),
                 new Analyze.User(3, "Ivan"),
                 new Analyze.User(4, "Anton"),
-                new Analyze.User(5,"Anna")
+                new Analyze.User(5, "Anna")
                 );
         Analyze analyze = new Analyze();
         Analyze.Info info = analyze.diff(first, second);
