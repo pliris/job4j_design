@@ -4,7 +4,12 @@ FROM person
                    ON company.id = person.company_id
 WHERE company.id != 5;
 
-SELECT MAX (total) as maximum
+SELECT name, MAX (total) as maximum
 FROM (SELECT company_id, COUNT(*) as total
       FROM person
-      GROUP BY company_id) as total;
+      GROUP BY company_id) as total
+         JOIN company
+              ON total.company_id = company.id
+GROUP BY name
+ORDER BY maximum desc
+limit 1;
