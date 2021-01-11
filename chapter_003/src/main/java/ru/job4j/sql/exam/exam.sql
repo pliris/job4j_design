@@ -48,11 +48,10 @@ from status
 GROUP BY  status.status, meeting.name
 HAVING status = true;
 
-select meeting.name, COUNT (*)
+select meeting.name, COUNT (status.status)
 from status
-         LEFT OUTER JOIN meeting
-                         ON status.meeting_id = meeting.id
-WHERE status.status = false
+         RIGHT OUTER JOIN meeting
+                          ON status.meeting_id = meeting.id
+WHERE status.status is null
 GROUP BY meeting.name
-HAVING COUNT(*) = 4
-;
+HAVING COUNT(status.status) = 0;
