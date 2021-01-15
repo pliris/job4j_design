@@ -1,0 +1,217 @@
+на 10000 объектов.
+
+SerilaGC
+1. first start GC
+User{name='name330', password='pass', age=330}
+[0.202s][info   ][gc,start     ] GC(3) Pause Young (Allocation Failure)
+[0.204s][info   ][gc,heap      ] GC(3) DefNew: 576K(576K)->63K(576K) Eden: 512K(512K)->0K(512K) From: 64K(64K)->63K(64K)
+[0.204s][info   ][gc,heap      ] GC(3) Tenured: 746K(1408K)->958K(1408K)
+[0.204s][info   ][gc,metaspace ] GC(3) Metaspace: 799K(4864K)->799K(4864K) NonClass: 729K(4352K)->729K(4352K) Class: 69K(512K)->69K(512K)
+[0.204s][info   ][gc           ] GC(3) Pause Young (Allocation Failure) 1M->0M(1M) 2.121ms
+[0.204s][info   ][gc,cpu       ] GC(3) User=0.00s Sys=0.00s Real=0.00s
+User{name='name331', password='pass', age=331}
+
+2. last new User
+User{name='name8648', password='pass', age=8648}
+[0.450s][info   ][gc,start       ] GC(36) Pause Full (Allocation Failure)
+[0.451s][info   ][gc,phases,start] GC(36) Phase 1: Mark live objects
+[0.454s][info   ][gc,phases      ] GC(36) Phase 1: Mark live objects 3.514ms
+[0.454s][info   ][gc,phases,start] GC(36) Phase 2: Compute new object addresses
+[0.455s][info   ][gc,phases      ] GC(36) Phase 2: Compute new object addresses 0.686ms
+[0.455s][info   ][gc,phases,start] GC(36) Phase 3: Adjust pointers
+[0.456s][info   ][gc,phases      ] GC(36) Phase 3: Adjust pointers 1.375ms
+[0.456s][info   ][gc,phases,start] GC(36) Phase 4: Move objects
+[0.456s][info   ][gc,phases      ] GC(36) Phase 4: Move objects 0.015ms
+[0.456s][info   ][gc,heap        ] GC(36) DefNew: 575K(576K)->575K(576K) Eden: 511K(512K)->511K(512K) From: 63K(64K)->63K(64K)
+[0.456s][info   ][gc,heap        ] GC(36) Tenured: 1407K(1408K)->1407K(1408K)
+[0.456s][info   ][gc,metaspace   ] GC(36) Metaspace: 963K(4864K)->963K(4864K) NonClass: 874K(4352K)->874K(4352K) Class: 89K(512K)->89K(512K)
+[0.456s][info   ][gc             ] GC(36) Pause Full (Allocation Failure) 1M->1M(1M) 5.950ms
+[0.456s][info   ][gc,cpu         ] GC(36) User=0.00s Sys=0.00s Real=0.01s
+[0.457s][info   ][gc,start       ] GC(37) Pause Full (Allocation Failure)
+[0.457s][info   ][gc,phases,start] GC(37) Phase 1: Mark live objects
+[0.461s][info   ][gc,phases      ] GC(37) Phase 1: Mark live objects 3.707ms
+[0.461s][info   ][gc,phases,start] GC(37) Phase 2: Compute new object addresses
+[0.462s][info   ][gc,phases      ] GC(37) Phase 2: Compute new object addresses 0.832ms
+[0.462s][info   ][gc,phases,start] GC(37) Phase 3: Adjust pointers
+[0.463s][info   ][gc,phases      ] GC(37) Phase 3: Adjust pointers 1.496ms
+[0.463s][info   ][gc,phases,start] GC(37) Phase 4: Move objects
+[0.463s][info   ][gc,phases      ] GC(37) Phase 4: Move objects 0.010ms
+[0.463s][info   ][gc,heap        ] GC(37) DefNew: 575K(576K)->575K(576K) Eden: 511K(512K)->511K(512K) From: 63K(64K)->63K(64K)
+[0.463s][info   ][gc,heap        ] GC(37) Tenured: 1407K(1408K)->1407K(1408K)
+[0.463s][info   ][gc,metaspace   ] GC(37) Metaspace: 963K(4864K)->963K(4864K) NonClass: 874K(4352K)->874K(4352K) Class: 89K(512K)->89K(512K)
+[0.463s][info   ][gc             ] GC(37) Pause Full (Allocation Failure) 1M->1M(1M) 6.412ms
+[0.463s][info   ][gc,cpu         ] GC(37) User=0.00s Sys=0.00s Real=0.01s
+[0.463s][info   ][gc,start       ] GC(38) Pause Full (Allocation Failure)
+[0.463s][info   ][gc,phases,start] GC(38) Phase 1: Mark live objects
+[0.466s][info   ][gc,phases      ] GC(38) Phase 1: Mark live objects 2.608ms
+[0.466s][info   ][gc,phases,start] GC(38) Phase 2: Compute new object addresses
+[0.467s][info   ][gc,phases      ] GC(38) Phase 2: Compute new object addresses 0.748ms
+[0.467s][info   ][gc,phases,start] GC(38) Phase 3: Adjust pointers
+[0.468s][info   ][gc,phases      ] GC(38) Phase 3: Adjust pointers 1.438ms
+[0.468s][info   ][gc,phases,start] GC(38) Phase 4: Move objects
+[0.468s][info   ][gc,phases      ] GC(38) Phase 4: Move objects 0.016ms
+[0.468s][info   ][gc,heap        ] GC(38) DefNew: 575K(576K)->575K(576K) Eden: 511K(512K)->511K(512K) From: 63K(64K)->63K(64K)
+[0.468s][info   ][gc,heap        ] GC(38) Tenured: 1407K(1408K)->1407K(1408K)
+[0.468s][info   ][gc,metaspace   ] GC(38) Metaspace: 963K(4864K)->963K(4864K) NonClass: 874K(4352K)->874K(4352K) Class: 89K(512K)->89K(512K)
+[0.468s][info   ][gc             ] GC(38) Pause Full (Allocation Failure) 1M->1M(1M) 5.114ms
+[0.468s][info   ][gc,cpu         ] GC(38) User=0.03s Sys=0.00s Real=0.01s
+[0.469s][info   ][gc,start       ] GC(39) Pause Full (Allocation Failure)
+[0.469s][info   ][gc,phases,start] GC(39) Phase 1: Mark live objects
+[0.472s][info   ][gc,phases      ] GC(39) Phase 1: Mark live objects 2.963ms
+[0.472s][info   ][gc,phases,start] GC(39) Phase 2: Compute new object addresses
+[0.473s][info   ][gc,phases      ] GC(39) Phase 2: Compute new object addresses 0.723ms
+[0.473s][info   ][gc,phases,start] GC(39) Phase 3: Adjust pointers
+[0.474s][info   ][gc,phases      ] GC(39) Phase 3: Adjust pointers 1.506ms
+[0.474s][info   ][gc,phases,start] GC(39) Phase 4: Move objects
+[0.475s][info   ][gc,phases      ] GC(39) Phase 4: Move objects 0.694ms
+[0.475s][info   ][gc,heap        ] GC(39) DefNew: 575K(576K)->537K(576K) Eden: 511K(512K)->511K(512K) From: 63K(64K)->25K(64K)
+[0.475s][info   ][gc,heap        ] GC(39) Tenured: 1407K(1408K)->1408K(1408K)
+[0.475s][info   ][gc,metaspace   ] GC(39) Metaspace: 964K(4864K)->964K(4864K) NonClass: 874K(4352K)->874K(4352K) Class: 89K(512K)->89K(512K)
+[0.475s][info   ][gc             ] GC(39) Pause Full (Allocation Failure) 1M->1M(1M) 6.205ms
+[0.475s][info   ][gc,cpu         ] GC(39) User=0.00s Sys=0.00s Real=0.01s
+
+
+ParallelGC
+1. first start GC
+User{name='name338', password='pass', age=338}
+[0.201s][info   ][gc,start       ] GC(4) Pause Full (Ergonomics)
+[0.201s][info   ][gc,phases,start] GC(4) Marking Phase
+[0.203s][info   ][gc,phases      ] GC(4) Marking Phase 2.263ms
+[0.203s][info   ][gc,phases,start] GC(4) Summary Phase
+[0.203s][info   ][gc,phases      ] GC(4) Summary Phase 0.009ms
+[0.203s][info   ][gc,phases,start] GC(4) Adjust Roots
+[0.204s][info   ][gc,phases      ] GC(4) Adjust Roots 0.729ms
+[0.204s][info   ][gc,phases,start] GC(4) Compaction Phase
+[0.208s][info   ][gc,phases      ] GC(4) Compaction Phase 3.724ms
+[0.208s][info   ][gc,phases,start] GC(4) Post Compact
+[0.208s][info   ][gc,phases      ] GC(4) Post Compact 0.032ms
+[0.208s][info   ][gc,heap        ] GC(4) PSYoungGen: 997K(1024K)->696K(1024K) Eden: 512K(512K)->213K(512K) From: 485K(512K)->483K(512K)
+[0.208s][info   ][gc,heap        ] GC(4) ParOldGen: 316K(512K)->315K(512K)
+[0.208s][info   ][gc,metaspace   ] GC(4) Metaspace: 808K(4864K)->808K(4864K) NonClass: 737K(4352K)->737K(4352K) Class: 71K(512K)->71K(512K)
+[0.208s][info   ][gc             ] GC(4) Pause Full (Ergonomics) 1M->0M(1M) 6.933ms
+[0.208s][info   ][gc,cpu         ] GC(4) User=0.00s Sys=0.00s Real=0.01s
+User{name='name339', password='pass', age=339}
+
+2. last new User
+User{name='name3867', password='pass', age=3867}
+[2.637s][info   ][gc,start       ] GC(335) Pause Full (Ergonomics)
+[2.637s][info   ][gc,phases,start] GC(335) Marking Phase
+[2.639s][info   ][gc,phases      ] GC(335) Marking Phase 2.628ms
+[2.639s][info   ][gc,phases,start] GC(335) Summary Phase
+[2.639s][info   ][gc,phases      ] GC(335) Summary Phase 0.011ms
+[2.639s][info   ][gc,phases,start] GC(335) Adjust Roots
+[2.640s][info   ][gc,phases      ] GC(335) Adjust Roots 0.871ms
+[2.640s][info   ][gc,phases,start] GC(335) Compaction Phase
+[2.645s][info   ][gc,phases      ] GC(335) Compaction Phase 5.133ms
+[2.645s][info   ][gc,phases,start] GC(335) Post Compact
+[2.646s][info   ][gc,phases      ] GC(335) Post Compact 0.098ms
+[2.646s][info   ][gc,heap        ] GC(335) PSYoungGen: 994K(1024K)->994K(1024K) Eden: 512K(512K)->512K(512K) From: 482K(512K)->482K(512K)
+[2.646s][info   ][gc,heap        ] GC(335) ParOldGen: 511K(512K)->509K(512K)
+[2.646s][info   ][gc,metaspace   ] GC(335) Metaspace: 1003K(4864K)->1003K(4864K) NonClass: 910K(4352K)->910K(4352K) Class: 92K(512K)->92K(512K)
+[2.646s][info   ][gc             ] GC(335) Pause Full (Ergonomics) 1M->1M(1M) 9.005ms
+[2.646s][info   ][gc,cpu         ] GC(335) User=0.00s Sys=0.00s Real=0.01s
+[2.647s][info   ][gc,heap,exit   ] Heap
+[2.647s][info   ][gc,heap,exit   ]  PSYoungGen      total 1024K, used 994K [0x00000000ffe80000, 0x0000000100000000, 0x0000000100000000)
+[2.647s][info   ][gc,heap,exit   ]   eden space 512K, 100% used [0x00000000ffe80000,0x00000000fff00000,0x00000000fff00000)
+[2.647s][info   ][gc,heap,exit   ]   from space 512K, 94% used [0x00000000fff00000,0x00000000fff78888,0x00000000fff80000)
+[2.647s][info   ][gc,heap,exit   ]   to   space 512K, 0% used [0x00000000fff80000,0x00000000fff80000,0x0000000100000000)
+[2.647s][info   ][gc,heap,exit   ]  ParOldGen       total 512K, used 511K [0x00000000ffe00000, 0x00000000ffe80000, 0x00000000ffe80000)
+[2.647s][info   ][gc,heap,exit   ]   object space 512K, 99% used [0x00000000ffe00000,0x00000000ffe7ff00,0x00000000ffe80000)
+[2.647s][info   ][gc,heap,exit   ]  Metaspace       used 1009K, capacity 4541K, committed 4864K, reserved 1056768K
+[2.647s][info   ][gc,heap,exit   ]   class space    used 93K, capacity 404K, committed 512K, reserved 1048576K
+Exception in thread "main" java.lang.OutOfMemoryError: GC overhead limit exceeded
+
+Ignoring option UseConcMarkSweepGC; support was removed in 14.0
+
+G1 GC
+1. first start GC
+User{name='name409', password='pass', age=409}
+[0.214s][info   ][gc,start     ] GC(1) Pause Young (Normal) (G1 Evacuation Pause)
+[0.214s][info   ][gc,task      ] GC(1) Using 2 workers of 10 for evacuation
+[0.218s][info   ][gc           ] GC(1) To-space exhausted
+[0.218s][info   ][gc,phases    ] GC(1)   Pre Evacuate Collection Set: 0.0ms
+[0.218s][info   ][gc,phases    ] GC(1)   Merge Heap Roots: 0.0ms
+[0.218s][info   ][gc,phases    ] GC(1)   Evacuate Collection Set: 2.6ms
+[0.218s][info   ][gc,phases    ] GC(1)   Post Evacuate Collection Set: 1.3ms
+[0.218s][info   ][gc,phases    ] GC(1)   Other: 0.2ms
+[0.218s][info   ][gc,heap      ] GC(1) Eden regions: 1->0(1)
+[0.218s][info   ][gc,heap      ] GC(1) Survivor regions: 1->0(0)
+[0.218s][info   ][gc,heap      ] GC(1) Old regions: 0->2
+[0.218s][info   ][gc,heap      ] GC(1) Archive regions: 0->0
+[0.218s][info   ][gc,heap      ] GC(1) Humongous regions: 0->0
+[0.218s][info   ][gc,metaspace ] GC(1) Metaspace: 815K(4864K)->815K(4864K) NonClass: 742K(4352K)->742K(4352K) Class: 72K(512K)->72K(512K)
+[0.218s][info   ][gc           ] GC(1) Pause Young (Normal) (G1 Evacuation Pause) 1M->1M(2M) 4.150ms
+[0.218s][info   ][gc,cpu       ] GC(1) User=0.00s Sys=0.00s Real=0.00s
+[0.218s][info   ][gc,task      ] GC(2) Using 1 workers of 10 for full compaction
+[0.218s][info   ][gc,start     ] GC(2) Pause Full (G1 Evacuation Pause)
+[0.218s][info   ][gc,phases,start] GC(2) Phase 1: Mark live objects
+[0.221s][info   ][gc,phases      ] GC(2) Phase 1: Mark live objects 2.393ms
+[0.221s][info   ][gc,phases,start] GC(2) Phase 2: Prepare for compaction
+[0.221s][info   ][gc,phases      ] GC(2) Phase 2: Prepare for compaction 0.560ms
+[0.221s][info   ][gc,phases,start] GC(2) Phase 3: Adjust pointers
+[0.223s][info   ][gc,phases      ] GC(2) Phase 3: Adjust pointers 1.808ms
+[0.223s][info   ][gc,phases,start] GC(2) Phase 4: Compact heap
+[0.224s][info   ][gc,phases      ] GC(2) Phase 4: Compact heap 1.087ms
+[0.225s][info   ][gc,heap        ] GC(2) Eden regions: 0->0(1)
+[0.225s][info   ][gc,heap        ] GC(2) Survivor regions: 0->0(0)
+[0.225s][info   ][gc,heap        ] GC(2) Old regions: 2->1
+[0.225s][info   ][gc,heap        ] GC(2) Archive regions: 0->0
+[0.225s][info   ][gc,heap        ] GC(2) Humongous regions: 0->0
+[0.225s][info   ][gc,metaspace   ] GC(2) Metaspace: 815K(4864K)->815K(4864K) NonClass: 742K(4352K)->742K(4352K) Class: 72K(512K)->72K(512K)
+[0.225s][info   ][gc             ] GC(2) Pause Full (G1 Evacuation Pause) 1M->0M(2M) 6.526ms
+[0.225s][info   ][gc,cpu         ] GC(2) User=0.00s Sys=0.00s Real=0.01s
+User{name='name410', password='pass', age=410}
+
+2. last new User
+User{name='name2225', password='pass', age=2225}
+[0.246s][info   ][gc,start       ] GC(3) Pause Young (Concurrent Start) (G1 Evacuation Pause)
+[0.246s][info   ][gc,task        ] GC(3) Using 2 workers of 10 for evacuation
+[0.251s][info   ][gc             ] GC(3) To-space exhausted
+[0.251s][info   ][gc,phases      ] GC(3)   Pre Evacuate Collection Set: 0.0ms
+[0.251s][info   ][gc,phases      ] GC(3)   Merge Heap Roots: 0.0ms
+[0.251s][info   ][gc,phases      ] GC(3)   Evacuate Collection Set: 2.2ms
+[0.251s][info   ][gc,phases      ] GC(3)   Post Evacuate Collection Set: 2.0ms
+[0.251s][info   ][gc,phases      ] GC(3)   Other: 0.3ms
+[0.251s][info   ][gc,heap        ] GC(3) Eden regions: 1->0(1)
+[0.251s][info   ][gc,heap        ] GC(3) Survivor regions: 0->0(0)
+[0.251s][info   ][gc,heap        ] GC(3) Old regions: 1->2
+[0.251s][info   ][gc,heap        ] GC(3) Archive regions: 0->0
+[0.251s][info   ][gc,heap        ] GC(3) Humongous regions: 0->0
+[0.251s][info   ][gc,metaspace   ] GC(3) Metaspace: 961K(4864K)->961K(4864K) NonClass: 872K(4352K)->872K(4352K) Class: 89K(512K)->89K(512K)
+[0.251s][info   ][gc             ] GC(3) Pause Young (Concurrent Start) (G1 Evacuation Pause) 1M->1M(2M) 4.670ms
+[0.251s][info   ][gc,cpu         ] GC(3) User=0.00s Sys=0.00s Real=0.00s
+
+
+
+
+на 500 объектов
+SerialGC
+[0.230s][info   ][gc,heap,exit ] Heap
+[0.230s][info   ][gc,heap,exit ]  def new generation   total 576K, used 221K [0x00000000ffe00000, 0x00000000ffea0000, 0x00000000ffea0000)
+[0.230s][info   ][gc,heap,exit ]   eden space 512K,  30% used [0x00000000ffe00000, 0x00000000ffe27458, 0x00000000ffe80000)
+[0.230s][info   ][gc,heap,exit ]   from space 64K,  99% used [0x00000000ffe80000, 0x00000000ffe8fff8, 0x00000000ffe90000)
+[0.230s][info   ][gc,heap,exit ]   to   space 64K,   0% used [0x00000000ffe90000, 0x00000000ffe90000, 0x00000000ffea0000)
+[0.230s][info   ][gc,heap,exit ]  tenured generation   total 1408K, used 972K [0x00000000ffea0000, 0x0000000100000000, 0x0000000100000000)
+[0.230s][info   ][gc,heap,exit ]    the space 1408K,  69% used [0x00000000ffea0000, 0x00000000fff93268, 0x00000000fff93400, 0x0000000100000000)
+[0.230s][info   ][gc,heap,exit ]  Metaspace       used 930K, capacity 4541K, committed 4864K, reserved 1056768K
+[0.230s][info   ][gc,heap,exit ]   class space    used 89K, capacity 404K, committed 512K, reserved 1048576K
+
+ParallelGC
+[0.250s][info   ][gc,heap,exit   ] Heap
+[0.250s][info   ][gc,heap,exit   ]  PSYoungGen      total 1024K, used 829K [0x00000000ffe80000, 0x0000000100000000, 0x0000000100000000)
+[0.250s][info   ][gc,heap,exit   ]   eden space 512K, 66% used [0x00000000ffe80000,0x00000000ffed5010,0x00000000fff00000)
+[0.250s][info   ][gc,heap,exit   ]   from space 512K, 95% used [0x00000000fff00000,0x00000000fff7a610,0x00000000fff80000)
+[0.250s][info   ][gc,heap,exit   ]   to   space 512K, 0% used [0x00000000fff80000,0x00000000fff80000,0x0000000100000000)
+[0.250s][info   ][gc,heap,exit   ]  ParOldGen       total 512K, used 309K [0x00000000ffe00000, 0x00000000ffe80000, 0x00000000ffe80000)
+[0.250s][info   ][gc,heap,exit   ]   object space 512K, 60% used [0x00000000ffe00000,0x00000000ffe4d5a8,0x00000000ffe80000)
+[0.250s][info   ][gc,heap,exit   ]  Metaspace       used 898K, capacity 4541K, committed 4864K, reserved 1056768K
+[0.250s][info   ][gc,heap,exit   ]   class space    used 85K, capacity 404K, committed 512K, reserved 1048576K
+
+
+G1GC
+[0.236s][info   ][gc,heap,exit   ] Heap
+[0.236s][info   ][gc,heap,exit   ]  garbage-first heap   total 2048K, used 1013K [0x00000000ffe00000, 0x0000000100000000)
+[0.237s][info   ][gc,heap,exit   ]   region size 1024K, 1 young (1024K), 0 survivors (0K)
+[0.237s][info   ][gc,heap,exit   ]  Metaspace       used 916K, capacity 4541K, committed 4864K, reserved 1056768K
+[0.237s][info   ][gc,heap,exit   ]   class space    used 86K, capacity 404K, committed 512K, reserved 1048576K
+
