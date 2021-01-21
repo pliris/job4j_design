@@ -1,7 +1,9 @@
 package ru.job4j.cache;
 
-public abstract class Cache {
-    private String key;
+import java.util.List;
 
-    public abstract void setObject(String key);
+public abstract class Cache {
+    private String name;
+
+    public abstract List<String> get(String name);
 }

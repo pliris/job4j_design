@@ -30,25 +30,27 @@ public class CacheFile extends Cache {
 
     /**
      * Получаем содержимое объекта (файла) по ключу
-     * @param key ключ (искомый файл)
+     * @param name ключ (искомый файл)
+     * @return
      */
     @Override
-    public void setObject(String key) {
+    public List<String> get(String name) {
         String str;
-        if ((this.key == null) || !(this.key.equals(key))) {
-        if (checkFile(key)) {
-            try (BufferedReader in = new BufferedReader(new FileReader(key))) {
+        if ((this.key == null) || !(this.key.equals(name))) {
+        if (checkFile(name)) {
+            try (BufferedReader in = new BufferedReader(new FileReader(name))) {
                 List<String> tempList = new ArrayList<>();
                 while ((str = in.readLine()) != null) {
                     tempList.add(str);
                 }
                 listReferences = new SoftReference<>(tempList);
-                this.key = key;
+                this.key = name;
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
         }
+        return this.listReferences.get();
     }
 
     /**
@@ -79,11 +81,8 @@ public class CacheFile extends Cache {
     public static void main(String[] args) throws IOException {
         CacheFile cacheFile = new CacheFile();
         Scanner sc = new Scanner(System.in);
-        while (!sc.equals("s")) {
-        cacheFile.setObject(sc.nextLine());
-        for (String s : cacheFile.getListReferences().get()) {
-            System.out.println(s);
-        }
+        while (!sc.equals("stop")) {
+        System.out.println(cacheFile.get(sc.nextLine()));
         }
 
     }
