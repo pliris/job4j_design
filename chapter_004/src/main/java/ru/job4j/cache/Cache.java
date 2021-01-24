@@ -5,5 +5,5 @@ import java.util.List;
 public abstract class Cache {
     private String name;
 
-    public abstract List<String> get(String name);
+    public abstract String get(String name);
 }
