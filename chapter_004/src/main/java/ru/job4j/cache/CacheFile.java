@@ -19,7 +19,7 @@ public class CacheFile extends Cache {
         if (this.referenceMap.containsKey(name)) {
             temp = this.referenceMap.get(name).get();
         }
-        if (file.exists() && temp == null) {
+        if (temp == null && file.exists()) {
             this.writeFile(name);
         }
         return this.referenceMap.get(name).get();
