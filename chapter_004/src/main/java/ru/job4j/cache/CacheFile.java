@@ -12,14 +12,15 @@ public class CacheFile extends Cache {
      * @param name имя файла содержимое которого требуептся получить
      * @return содержимое файла в виде строки, которое содержится в HashMap в значении
      */
-
     @Override
     public String get(String name) {
         File file = new File(name);
-        if (!this.referenceMap.containsKey(name) || (this.referenceMap.get(name).get() == null)) {
-        if (file.exists()) {
-            this.writeFile(name);
+        String temp = null;
+        if (this.referenceMap.containsKey(name)) {
+            temp = this.referenceMap.get(name).get();
         }
+        if (file.exists() && temp == null) {
+            this.writeFile(name);
         }
         return this.referenceMap.get(name).get();
     }
@@ -28,7 +29,6 @@ public class CacheFile extends Cache {
      * Метод читает содержимое файла и добавляет в HashMap ключ - Имя файла и значение - Содержимое файла
      * @param name Имя файла
      */
-
     private void writeFile(String name) {
         StringBuilder sb = new StringBuilder();
         String temp;
@@ -49,6 +49,5 @@ public class CacheFile extends Cache {
         while (!sc.equals("stop")) {
         System.out.println(cacheFile.get(sc.nextLine()));
         }
-
     }
 }
