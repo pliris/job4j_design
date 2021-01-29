@@ -6,17 +6,24 @@ import org.openjdk.jmh.annotations.*;
 import java.util.HashSet;
 import java.util.concurrent.TimeUnit;
 
-@State(Scope.Thread)
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
-@Fork(3)
+@Warmup(iterations = 1)
+@State(Scope.Thread)
+@Fork(2)
 
 public class MyBenchmark {
-    String origin;
-    String line;
-    public static void main(String[] args) throws Exception {
-        org.openjdk.jmh.Main.main(args);
-    }
+    static String origin;
+    static String line;
+    boolean rsl = true;
+    String[] originArr;
+    String[] text;
+    String regex;
+    HashSet<String> check = new HashSet<>();
+
+    //    public static void main(String[] args) throws Exception {
+//        org.openjdk.jmh.Main.main(args);
+//    }
     @Setup
     public void prepare() {
         origin =  "Мой дядя самых честных правил, "
@@ -34,6 +41,9 @@ public class MyBenchmark {
                 + "Вздыхать и думать про себя: "
                 + "Когда же черт возьмет тебя!";
         line = "Мой дядя мог думать про тебя и день и ночь";
+        originArr = origin.split(" ");
+        text = line.split(" ");
+        regex = "[!?,.;:]";
     }
 
 
@@ -44,10 +54,10 @@ public class MyBenchmark {
             String[] text = line.split(" ");
             String regex = "[!?,.;:]";
             HashSet<String> check = new HashSet<>();
-        for (String strOrg : originArr) {
-            strOrg = strOrg.replaceAll(regex, "");
-            check.add(strOrg);
-        }
+            for (String strOrg : originArr) {
+                strOrg = strOrg.replaceAll(regex, "");
+                check.add(strOrg);
+            }
             for (String strText : text) {
                 if (!check.contains(strText)) {
                     rsl = false;
@@ -56,7 +66,39 @@ public class MyBenchmark {
             }
             return rsl;
         }
-
+        @Benchmark
+        public void setOrigin() {
+            for (String strOrg : originArr) {
+                strOrg = strOrg.replaceAll(regex, "");
+                check.add(strOrg);
+            }
     }
+        @State(Scope.Thread)
+        public static class MyState {
+        boolean rsl = true;
+        String[] originArr = origin.split(" ");
+        String[] text = line.split(" ");
+        String regex = "[!?,.;:]";
+        HashSet<String> check = new HashSet<>();
+            @Setup(Level.Trial)
+            public void setOriginArr() {
+                for (String strOrg : originArr) {
+                    strOrg = strOrg.replaceAll(regex, "");
+                    check.add(strOrg);
+                }
+            }
+        }
+    @Benchmark
+    public boolean checkText(MyState state) {
+        for (String strText : state.text) {
+                if (!state.check.contains(strText)) {
+                    state.rsl = false;
+                    break;
+                }
+            }
+        return state.rsl;
+    }
+    }
+
 
 
