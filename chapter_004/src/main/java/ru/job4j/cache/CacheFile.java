@@ -21,8 +21,9 @@ public class CacheFile extends Cache {
         }
         if (temp == null && file.exists()) {
             this.writeFile(name);
+            temp = this.referenceMap.get(name).get();
         }
-        return this.referenceMap.get(name).get();
+        return temp;
     }
 
     /**
@@ -46,7 +47,7 @@ public class CacheFile extends Cache {
     public static void main(String[] args) throws IOException {
         CacheFile cacheFile = new CacheFile();
         Scanner sc = new Scanner(System.in);
-        while (!sc.equals("stop")) {
+        while (!sc.equals("s")) {
         System.out.println(cacheFile.get(sc.nextLine()));
         }
     }
