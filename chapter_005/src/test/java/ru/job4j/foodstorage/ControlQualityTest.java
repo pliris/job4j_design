@@ -25,7 +25,7 @@ public class ControlQualityTest {
                         new Date(2021, 1, 1), 32.0, 0, 3.2));
         List<StoreStrategy> store = Arrays.asList(new Shop(), new Trash(), new Warehouse());
         ControlQuality controlQuality = new ControlQuality(foods, store);
-        controlQuality.sort();
+        controlQuality.distribute();
         Food exp = new Bread("Бородинский",
                 new Date(2021, 2, 12),
                 new Date(2021, 2, 1), 45.0, 0, "Ржаной");

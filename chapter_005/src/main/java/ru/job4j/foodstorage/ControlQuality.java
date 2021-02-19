@@ -25,7 +25,7 @@ public class ControlQuality {
      * Метод распределяет проудкты в зависимости от условий
      * указанных в реализациях StoreStrategy
      */
-    public void sort() {
+    public void distribute() {
             for (Food food : this.foods) {
                 for (StoreStrategy store : this.stores) {
                     if (store.move(food)) {
