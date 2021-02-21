@@ -14,7 +14,6 @@ public class ReadFile {
             for (String line : lines) {
                 System.out.println(line);
             }
-          //  System.out.println(text);
         } catch (Exception e) {
             e.printStackTrace();
         }

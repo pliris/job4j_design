@@ -25,7 +25,7 @@ public class User {
 
     public static void main(String[] args) throws OutOfMemoryError, InterruptedException {
         List<User> userList = new ArrayList<>();
-            for (int i = 0; i < 100000; i++) {
+            for (int i = 0; i < 10000; i++) {
                     userList.add(new User("name" + i, i, "pass"));
                     System.out.println(userList.get(i).toString());
             }
