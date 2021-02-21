@@ -11,9 +11,9 @@ public class ParkControllerTest {
     public void parkingAdd() {
         Parking truckParking = new TruckParking(8);
         Parking passcarParking = new PasscarParking(8);
-        Vehicle truck2 = new Truck("Truck", "Kamaz", "636", 2);
-        Vehicle truck3 = new Truck("Truck", "Kraz", "875", 3);
-        Vehicle truck4 = new Truck("Truck", "Maz", "234", 3);
+        Vehicle truck2 = new Truck("Kamaz", 2);
+        Vehicle truck3 = new Truck("Kraz", 3);
+        Vehicle truck4 = new Truck("Maz",  3);
         ParkController controller = new ParkController();
         controller.parkingVehicle(truck2);
         controller.parkingVehicle(truck3);
@@ -24,12 +24,12 @@ public class ParkControllerTest {
     public void whenHaveNotSeatParkingTruckThenException() {
         Parking truckParking = new TruckParking(5);
         Parking passcarParking = new PasscarParking(5);
-        Vehicle truck2 = new Truck("Truck", "Kamaz", "636", 2);
-        Vehicle truck3 = new Truck("Truck", "Kraz", "875", 3);
-        Vehicle truck4 = new Truck("Truck", "Maz", "234", 3);
-        Vehicle car1 = new PassCar("Passenger", "Volvo", "345");
-        Vehicle car2 = new PassCar("Passenger", "Vaz", "124");
-        Vehicle car3 = new PassCar("Passenger", "Mazda", "903");
+        Vehicle truck2 = new Truck("Kamaz", 2);
+        Vehicle truck3 = new Truck("Kraz", 3);
+        Vehicle truck4 = new Truck("Maz",  3);
+        Vehicle car1 = new PassCar("Volvo", 1);
+        Vehicle car2 = new PassCar("Vaz", 1);
+        Vehicle car3 = new PassCar("Mazda", 1);
         ParkController controller = new ParkController();
         controller.parkingVehicle(truck2);
         controller.parkingVehicle(truck3);
@@ -43,12 +43,12 @@ public class ParkControllerTest {
     public void whenAddAndDeleteVehicleThenGetSecondVehicleOnSeat() {
         Parking truckParking = new TruckParking(5);
         Parking passcarParking = new PasscarParking(5);
-        Vehicle truck2 = new Truck("Truck", "Kamaz", "636", 2);
-        Vehicle truck3 = new Truck("Truck", "Kraz", "875", 3);
-        Vehicle truck4 = new Truck("Truck", "Maz", "234", 3);
-        Vehicle car1 = new PassCar("Passenger", "Volvo", "345");
-        Vehicle car2 = new PassCar("Passenger", "Vaz", "124");
-        Vehicle car3 = new PassCar("Passenger", "Mazda", "903");
+        Vehicle truck2 = new Truck("Kamaz", 2);
+        Vehicle truck3 = new Truck("Kraz", 3);
+        Vehicle truck4 = new Truck("Maz",  3);
+        Vehicle car1 = new PassCar("Volvo", 1);
+        Vehicle car2 = new PassCar("Vaz", 1);
+        Vehicle car3 = new PassCar("Mazda", 1);
         ParkController controller = new ParkController();
         controller.parkingVehicle(truck2);
         controller.parkingVehicle(truck3);

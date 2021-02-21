@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface Parking {
-    List<Vehicle> VEHICLES = new ArrayList<>();
-
     /**
      * Добавляем автомобиль на парковку
      * @param vehicle автомобиль для парковки

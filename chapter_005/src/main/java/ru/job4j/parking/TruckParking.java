@@ -1,6 +1,10 @@
 package ru.job4j.parking;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TruckParking implements Parking {
+    List<Vehicle> list = new ArrayList<>();
     @Override
     public boolean addVehicle(Vehicle vehicle) {
         return false;
