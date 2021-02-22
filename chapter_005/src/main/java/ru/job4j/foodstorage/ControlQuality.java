@@ -8,16 +8,13 @@ import java.util.List;
  */
 
 public class ControlQuality {
-    private List<Food> foods;
     private List<StoreStrategy> stores;
 
     /**
      * Конструктор класса Контролера качества
-     * @param foods список продуктов для контроля (проверки)
      * @param stores список возможных мест хранения продуктов
      */
-    public ControlQuality(List<Food> foods, List<StoreStrategy> stores) {
-        this.foods = foods;
+    public ControlQuality(List<StoreStrategy> stores) {
         this.stores = stores;
     }
 
@@ -25,15 +22,21 @@ public class ControlQuality {
      * Метод распределяет проудкты в зависимости от условий
      * указанных в реализациях StoreStrategy
      */
-    public void sort() {
-            for (Food food : this.foods) {
-                for (StoreStrategy store : this.stores) {
-                    if (store.move(food)) {
-                        break;
-                    }
-                }
-            }
+    public void resort() {
+        for (Food food : this.getAllFoods()) {
+            this.distribute(food);
+        }
     }
+
+    private List<Food> getAllFoods() {
+        List<Food> listFoods = new ArrayList<>();
+        for (StoreStrategy store : this.stores) {
+            listFoods.addAll(store.getList());
+            store.getList().clear();
+        }
+        return listFoods;
+    }
+
 
     public void distribute(Food food) {
         for (StoreStrategy store : this.stores) {
