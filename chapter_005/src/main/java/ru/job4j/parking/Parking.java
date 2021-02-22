@@ -13,14 +13,10 @@ public interface Parking {
 
     /**
      * Удаляем автомобиль с парковки
-     * @param vehicle автомобиль для удаления с парковки
+     * @param seat автомобиль для удаления с парковки
      */
-    public void deleteVehicle(Vehicle vehicle);
+    public void deleteVehicle(int seat);
 
-    /**
-     * Найти свободные места для парковки
-     * @param size размер грузового автомобиля
-     * @return индекс в массиве начиная с которого размещаем автомобиль
-     */
-    public int findNearbySeat(int size);
+
+    public List<Vehicle> getList();
 }

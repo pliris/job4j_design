@@ -1,6 +1,5 @@
 package ru.job4j.parking;
 
-import java.util.List;
 
 public class Truck extends Vehicle {
 
@@ -8,4 +7,5 @@ public class Truck extends Vehicle {
         super(name, size);
 
     }
+
 }
