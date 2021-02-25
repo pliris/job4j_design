@@ -22,8 +22,8 @@ public class ParkController {
 
     private boolean checkEmptySeat(int size) {
         if (size > 1) {
-            if (this.truck >= size) {
-                this.truck =  this.truck - size;
+            if (this.truck > 0) {
+                this.truck--;
                 return true;
             } else if (this.pass >= size) {
                 this.pass =  this.pass - size;

@@ -23,9 +23,9 @@ public class ParkControllerTest {
         Vehicle truck2 = new Truck("Kamaz", 2);
         Vehicle truck3 = new Truck("Kraz", 3);
         Vehicle truck4 = new Truck("Maz",  3);
-        Vehicle car1 = new PassCar("Volvo", 1);
-        Vehicle car2 = new PassCar("Vaz", 1);
-        Vehicle car3 = new PassCar("Mazda", 1);
+        Vehicle car1 = new PassCar("Volvo");
+        Vehicle car2 = new PassCar("Vaz");
+        Vehicle car3 = new PassCar("Mazda");
         ParkController controller = new ParkController(6, 4);
         controller.parkingVehicle(truck2);
         controller.parkingVehicle(truck3);
@@ -40,9 +40,9 @@ public class ParkControllerTest {
         Vehicle truck2 = new Truck("Kamaz", 2);
         Vehicle truck3 = new Truck("Kraz", 3);
         Vehicle truck4 = new Truck("Maz",  3);
-        Vehicle car1 = new PassCar("Volvo", 1);
-        Vehicle car2 = new PassCar("Vaz", 1);
-        Vehicle car3 = new PassCar("Mazda", 1);
+        Vehicle car1 = new PassCar("Volvo");
+        Vehicle car2 = new PassCar("Vaz");
+        Vehicle car3 = new PassCar("Mazda");
         ParkController controller = new ParkController(7, 4);
         controller.parkingVehicle(truck2);
         controller.parkingVehicle(truck3);
