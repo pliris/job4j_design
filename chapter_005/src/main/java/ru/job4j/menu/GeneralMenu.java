@@ -11,19 +11,20 @@ public class GeneralMenu implements Menu {
     }
 
     @Override
-    public void printMenu() {
+    public String printMenu() {
+        StringBuilder sb = new StringBuilder();
         for (MenuItem item : list) {
-            item.action();
-            this.recurChild(item);
-
+           sb.append(item.getName()).append(System.lineSeparator());
+           this.recurChild(item, sb);
         }
+       return sb.toString();
     }
 
-    private void recurChild(MenuItem item) {
+    private void recurChild(MenuItem item, StringBuilder sb) {
             if (item.getChild().size() != 0) {
                 for (MenuItem itemChild : item.getChild()) {
-                    itemChild.action();
-                    recurChild(itemChild);
+                   sb.append(itemChild.getName()).append(System.lineSeparator());
+                    this.recurChild(itemChild, sb);
             }
         }
     }

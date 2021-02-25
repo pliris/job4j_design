@@ -5,10 +5,12 @@ import java.util.List;
 
 public class MenuItem implements Item, ActionItem {
     String name;
+    ActionItem actionItem;
     List<MenuItem> child = new LinkedList<>();
 
-    public MenuItem(String name) {
+    public MenuItem(String name, ActionItem actionItem) {
         this.name = name;
+        this.actionItem = actionItem;
 
     }
 
@@ -19,16 +21,25 @@ public class MenuItem implements Item, ActionItem {
 
     @Override
     public void action() {
-        System.out.println(this.name);
+        this.getActionItem().action();
     }
 
-//    @Override
     public void addItem(MenuItem item) {
         this.child.add(item);
     }
 
+    public String getName() {
+        return name;
+    }
+
+
     public List<MenuItem> getChild() {
         return child;
+    }
+
+
+    public ActionItem getActionItem() {
+        return actionItem;
     }
 
     @Override
