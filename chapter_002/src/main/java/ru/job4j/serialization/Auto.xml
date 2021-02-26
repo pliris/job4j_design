@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<Auto>
+    <model name="Toyota corolla"/>
+    <transmission auto="false"/>
+    <price dollars="15000"/>
+    <engine>
+        <hybrid>false</hybrid>
+        <power>150</power>
+    </engine>
+    <passengers>
+        <passenger>
+            <name>Tom Tortilla</name>
+            <driver_license> false </driver_license>
+        </passenger>
+        <passenger name = "Bill Sampson" driver_license = "false"/>
+    </passengers>
+</Auto>
