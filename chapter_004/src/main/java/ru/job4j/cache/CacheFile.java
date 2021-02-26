@@ -20,8 +20,7 @@ public class CacheFile extends Cache {
             temp = this.referenceMap.get(name).get();
         }
         if (temp == null && file.exists()) {
-            this.writeFile(name);
-            temp = this.referenceMap.get(name).get();
+            temp = this.writeFile(name);
         }
         return temp;
     }
@@ -29,8 +28,9 @@ public class CacheFile extends Cache {
     /**
      * Метод читает содержимое файла и добавляет в HashMap ключ - Имя файла и значение - Содержимое файла
      * @param name Имя файла
+     * @return вовзращаем строгую ссылку на содержмое файла (объекта StringBuilder в виде Строки)
      */
-    private void writeFile(String name) {
+    private String writeFile(String name) {
         StringBuilder sb = new StringBuilder();
         String temp;
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(name))) {
@@ -42,6 +42,7 @@ public class CacheFile extends Cache {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return  sb.toString();
     }
 
     public static void main(String[] args) throws IOException {
