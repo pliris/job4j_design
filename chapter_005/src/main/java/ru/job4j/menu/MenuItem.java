@@ -2,16 +2,21 @@ package ru.job4j.menu;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
-public class MenuItem implements Item, ActionItem {
+public class MenuItem implements Item {
     String name;
-    ActionItem actionItem;
     List<MenuItem> child = new LinkedList<>();
+    Map<String, ActionItem> actions;
 
-    public MenuItem(String name, ActionItem actionItem) {
+    public MenuItem(String name, Map<String, ActionItem> actions) {
         this.name = name;
-        this.actionItem = actionItem;
+        this.actions = actions;
 
+    }
+
+    public ActionItem choose(String name) {
+        return this.actions.get(name);
     }
 
     @Override
@@ -19,10 +24,6 @@ public class MenuItem implements Item, ActionItem {
         this.name = name;
     }
 
-    @Override
-    public void action() {
-        this.getActionItem().action();
-    }
 
     public void addItem(MenuItem item) {
         this.child.add(item);
@@ -37,10 +38,6 @@ public class MenuItem implements Item, ActionItem {
         return child;
     }
 
-
-    public ActionItem getActionItem() {
-        return actionItem;
-    }
 
     @Override
     public String toString() {
