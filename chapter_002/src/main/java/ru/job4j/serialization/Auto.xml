@@ -8,10 +8,11 @@
         <power>150</power>
     </engine>
     <passengers>
-        <passenger>
-            <name>Tom Tortilla</name>
+        <passenger name = "Tom Tortilla">
             <driver_license> false </driver_license>
         </passenger>
-        <passenger name = "Bill Sampson" driver_license = "false"/>
+        <passenger name = "Bill Sampson">
+            <driver_license> false </driver_license>
+        </passenger>
     </passengers>
 </Auto>
