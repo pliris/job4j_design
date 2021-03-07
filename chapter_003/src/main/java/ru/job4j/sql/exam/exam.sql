@@ -52,6 +52,6 @@ select meeting.name, COUNT (status.status)
 from status
          RIGHT OUTER JOIN meeting
                           ON status.meeting_id = meeting.id
-WHERE status.status is null
+WHERE  status.status is null or status.status is false
 GROUP BY meeting.name
-HAVING COUNT(status.status) = 0;
+HAVING COUNT (status.status) = 0;
