@@ -13,7 +13,8 @@ public class NameSearcher extends SearcherFactory {
     private Predicate<String> filter;
 
     public NameSearcher(Predicate<String> filter, String key) {
-        super.setFilter(s -> s.startsWith(filter.toString()));
+        this.filter = s -> s.startsWith(filter.toString());
+//        super.setFilte(s -> s.startsWith(filter.toString());
     }
 
     @Override

@@ -7,4 +7,21 @@
 0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:49 +0300] "GET /tomcat.css HTTP/1.1" 200 5931
 0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:49 +0300] "GET /bg-nav.png HTTP/1.1" 200 1401
 0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:49 +0300] "GET /bg-button.png HTTP/1.1" 200 713
-0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:49 +0300] "GET /bg-middle.png HTTP/1.1" 200 1918C:\projects\job4j\.idea\checkstyleidea-libs\readme.txtC:\projects\job4j\404.txtC:\projects\job4j\even.txtC:\projects\job4j\file.txtC:\projects\job4j\log.txtC:\projects\job4j\source.txtC:\projects\job4j\target.txt
+0:0:0:0:0:0:0:1 - - [19/Feb/2020:15:21:49 +0300] "GET /bg-middle.png HTTP/1.1" 200 1918C:\projects\job4j\.idea\checkstyleidea-libs\readme.txtC:\projects\job4j\404.txtC:\projects\job4j\even.txtC:\projects\job4j\file.txtC:\projects\job4j\log.txtC:\projects\job4j\source.txtC:\projects\job4j\target.txtC:\projects\job4j_design\.idea\checkstyleidea-libs\readme.txt
+C:\projects\job4j_design\404.txt
+C:\projects\job4j_design\address.txt
+C:\projects\job4j_design\chapter_002\target\surefire-reports\ru.job4j.AppTest.txt
+C:\projects\job4j_design\chapter_002\target\surefire-reports\ru.job4j.io.AnalizyTest.txt
+C:\projects\job4j_design\chapter_002\target\surefire-reports\ru.job4j.io.ArgsNameTest.txt
+C:\projects\job4j_design\chapter_002\target\surefire-reports\ru.job4j.io.ConfigTest.txt
+C:\projects\job4j_design\chapter_002\target\surefire-reports\ru.job4j.io.ShellTest.txt
+C:\projects\job4j_design\chapter_004\профилирование.txt
+C:\projects\job4j_design\dump.txt
+C:\projects\job4j_design\even.txt
+C:\projects\job4j_design\file.txt
+C:\projects\job4j_design\log.txt
+C:\projects\job4j_design\name.txt
+C:\projects\job4j_design\source.txt
+C:\projects\job4j_design\target.txt
+C:\projects\job4j_design\temp\log.txt
+C:\projects\job4j_design\сравнение GC.txt

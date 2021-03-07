@@ -14,7 +14,7 @@ public class FullNameSearcher extends  SearcherFactory {
 
     public FullNameSearcher(Predicate<String> filter, String key) {
         this.filter = s -> s.equals(filter.toString());
-        super.setFilter(filter);
+     //   super.setFilter(filter);
 
     }
 
