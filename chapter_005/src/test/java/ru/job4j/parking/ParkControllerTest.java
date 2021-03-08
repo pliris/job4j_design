@@ -26,7 +26,7 @@ public class ParkControllerTest {
         Vehicle car1 = new PassCar("Volvo");
         Vehicle car2 = new PassCar("Vaz");
         Vehicle car3 = new PassCar("Mazda");
-        ParkController controller = new ParkController(6, 4);
+        ParkController controller = new ParkController(3, 2);
         controller.parkingVehicle(truck2);
         controller.parkingVehicle(truck3);
         controller.parkingVehicle(truck4);
