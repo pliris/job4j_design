@@ -20,8 +20,8 @@ public class EchoServer {
                 try (OutputStream out = socket.getOutputStream();
                      BufferedReader in = new BufferedReader(
                              new InputStreamReader(socket.getInputStream()))) {
-                    String str;
-                    while (!(str = in.readLine()).isEmpty()) {
+                    String str = in.readLine();
+                    while (!str.isEmpty()) {
                         if (str.contains("?msg=") && str.contains("GET")) {
                             if (str.contains("Hello")) {
                                 out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
@@ -41,6 +41,7 @@ public class EchoServer {
                                 builder.setLength(0);
                             }
                         }
+                        str = in.readLine();
                     }
                 }
             }
