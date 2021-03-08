@@ -1,121 +1,74 @@
 package ru.job4j.exam;
 
-
 import java.util.*;
 
 public class Mail {
-  //  private Map<User, Set<Email>> mapUser = new HashMap<>();
-    public Set<User> setUsers = new HashSet<>();
 
 
-    public void process(Set<User> accounts) {
-        Set<User> set = new HashSet<>(accounts);
-        Map<String, User> map = new TreeMap<>();
-        for (User user : set) {
-            map.putAll(this.checkMap(user, set));
-        }
-        for (User user : map.values()) {
-            map.entrySet().forEach(s -> {
-                if (s.getValue().name.equals(user.name)) {
-                    user.addEmail(s.getKey());
+    /**
+     * Метод получает на вход множество объектов User, используя временную Карту переворачиваем множество
+     * к виду Ключ (адрес эл.почты), значение (Имя пользователя), ищем совпадающие адреса, получаем значение Имя пользователя,
+     * объединяем у совпадающих пользователей адреса в одном множество и добавляем в результирующую Карту ключ (имя пользователя)
+     * и значение (множество адресов эл.почты)
+     * @param accounts множество объектов User
+     *      * (имя пользователя и множество содержащее адреса эл.почты)
+     * @return Возвращаем Карту содержащую Имя пользователя (ключ) в виде строки и множество с адресами эл.почты (значение).
+     */
+    public Map<String, Set<String>> insert(Set<User> accounts) {
+        Map<String, String> temp = new HashMap<>();// email, user
+        Map<String, Set<String>> outMap = new HashMap<>(); // User, List<String>
+        for (User currentUser : accounts) {
+            String oldCopiedUser = null;
+            for (String email : currentUser.getEmails()) {
+                if (temp.containsKey(email)) {
+                    oldCopiedUser = temp.get(email);
+                    break;
                 }
-            });
-            this.setUsers.add(user);
-        }
-    }
-
-    private Map<String, User> checkMap(User user, Set<User> set) {
-        Map<String, User> map = new TreeMap<>();
-        Iterator<User> it = set.iterator();
-        user.getEmails().forEach(e -> map.put(e, new User(user.getName(), new HashSet<>())));
-        while (it.hasNext()) {
-          User tempUser = it.next();
-            for (String email : tempUser.getEmails()) {
-                if (map.containsKey(email)) {
-                    tempUser.getEmails().forEach(e -> map.put(e, map.get(email.toString())));
-                }
+                temp.put(email, currentUser.getName());
+            }
+            if (oldCopiedUser == null) {
+                outMap.put(currentUser.getName(), currentUser.getEmails());
+            } else {
+                Set<String> set = currentUser.getEmails();
+                set.addAll(outMap.get(oldCopiedUser));
+                outMap.remove(oldCopiedUser);
+               outMap.put(currentUser.getName(), set);
             }
         }
-        return map;
+        return outMap;
     }
 
-
 //
-//    public Set<User> process(Set<User> accounts) {
-//        Set<User> temp = new HashSet<>();
-//        for (User user : accounts) {
-//            if (temp.size() == 0) {z
-//                temp.add(user);
-//            }
-//            Iterator<User> it = temp.iterator();
-//            Set<String> tempSet = new HashSet<>();
-//            while (it.hasNext()) {
-//                User currentUser = it.next();
-//                for (String email : user.getEmails()) {
-//                    if (currentUser.containsEmail(email)) {
-//                        currentUser.getEmails().addAll(user.getEmails());
-//                        tempSet.addAll(currentUser.getEmails());
-//                        break;
-//                    }
-//                }
-//                temp.add(currentUser);
-//            }
-//
+//    public void process(Set<User> accounts) {
+//        Set<User> set = new HashSet<>(accounts);
+//        Map<String, User> map = new TreeMap<>();
+//        for (User user : set) {
+//            map.putAll(this.checkMap(user, set));
 //        }
-//        return temp;
-
-//
-//     public Map<User, Set<Email>> unitMail(Map<User, Set<Email>> accounts) {
-//        Set<Email> setEmails = new HashSet<>();
-//         for (User user : accounts.keySet()) {
-//             Set<Email> emails = accounts.get(user);
-//             for (Email tempEmail : emails) {
-//                 if (this.findUserByEmail(tempEmail) != null) {
-//                     User tempUser = this.findUserByEmail(tempEmail);
-//                     setEmails = this.findSetEmails(tempUser);
-//                   //  setEmails.add(tempEmail);
-////                     emails = setEmails.stream().
-////                             filter(e -> e.equals(tempEmail)).
-////                             collect(Collectors.toSet());
-//                     mapUser.put(user, setEmails.stream().
-//                             filter(e -> !e.equals(tempEmail)).
-//                             collect(Collectors.toSet()));
-//                     mapUser.remove(tempUser, setEmails);
-//
-//                 } else if (this.findSetEmails(user) == null) {
-//                     Set<Email> tempSet = new HashSet<>();
-//                     tempSet.add(tempEmail);
-//                     mapUser.put(user, tempSet);
-//                 } else {
-//                     setEmails = this.findSetEmails(user);
-//                     setEmails.add(tempEmail);
-//                 }
-//             }
-//         }
-//         return this.mapUser;
-//     }
-
-//     private Set<Email> findSetEmails(User user) {
-//         return this.mapUser.get(user);
-//     }
-//
-//    private User findUserByEmail(Email email) {
-//    Iterator<User> it = this.mapUser.keySet().iterator();
-//    User user = null;
-//    Set<Email> setEmail;
-//    while (it.hasNext()) {
-//        User tempUser = it.next();
-//        setEmail = this.findSetEmails(tempUser);
-//        for (Email tempEmail : setEmail) {
-//            if (tempEmail.equals(email)) {
-//                user = tempUser;
-//                break;
-//            }
+//        for (User user : map.values()) {
+//            map.entrySet().forEach(s -> {
+//                if (s.getValue().name.equals(user.name)) {
+//                    user.addEmail(s.getKey());
+//                }
+//            });
+//            this.setUsers.add(user);
 //        }
 //    }
-//    return user;
-//     }
-
+//
+//    private Map<String, User> checkMap(User user, Set<User> set) {
+//        Map<String, User> map = new TreeMap<>();
+//        Iterator<User> it = set.iterator();
+//        user.getEmails().forEach(e -> map.put(e, new User(user.getName(), new HashSet<>())));
+//        while (it.hasNext()) {
+//          User tempUser = it.next();
+//            for (String email : tempUser.getEmails()) {
+//                if (map.containsKey(email)) {
+//                    tempUser.getEmails().forEach(e -> map.put(e, map.get(email.toString())));
+//                }
+//            }
+//        }
+//        return map;
+//    }
 
     public static class User {
          private String name;
@@ -164,37 +117,4 @@ public class Mail {
             return Objects.hash(name, emails);
         }
     }
-
-//    public static class Email {
-//         private String email;
-//
-//         public Email(String email) {
-//             this.email = email;
-//         }
-//
-//        public String getEmail() {
-//            return email;
-//        }
-//
-//        public void setEmail(String email) {
-//            this.email = email;
-//        }
-//
-//        @Override
-//        public boolean equals(Object o) {
-//            if (this == o) {
-//                return true;
-//            }
-//            if (o == null || getClass() != o.getClass()) {
-//                return false;
-//            }
-//            Email email1 = (Email) o;
-//            return Objects.equals(email, email1.email);
-//        }
-//
-//        @Override
-//        public int hashCode() {
-//            return Objects.hash(email);
-//        }
-//    }
 }

@@ -13,28 +13,47 @@ public class MailTest {
     @Test
     public void whenThen() {
     Set<Mail.User> set = new HashSet<>();
-        set.add(new Mail.User("user1", new HashSet<>(Set.of(("xxx@ya.ru"), ("foo@gmail.com"),
-                ("lol@mail.ru")))));
-       set.add(new Mail.User("user3", new HashSet<>(Set.of(
-                ("xyz@pisem.net"),
-                ("vasya@pupkin.com")))));
-        set.add(new Mail.User("user5", new HashSet<>(Set.of(
-                ("xyz@pisem.net")))));
+        Mail.User user1 = new Mail.User("user1", new HashSet<>(Set.of(("xxx@ya.ru"), ("foo@gmail.com"),
+                ("lol@mail.ru"))));
+        Mail.User user2 = new Mail.User("user2", new HashSet<>(Set.of(("ups@pisem.net"),
+                ("foo@gmail.com"))));
+        Mail.User user4 = new Mail.User("user4", new HashSet<>(Set.of(("aaa@bbb.ru"),
+                ("ups@pisem.net"))));
+
+        Mail.User user3 = new Mail.User("user3", new HashSet<>(Set.of(("xyz@pisem.net"),
+                ("vasya@pupkin.com"))));
+        Mail.User user5 = new Mail.User("user5", new HashSet<>(Set.of(
+                ("xyz@pisem.net"))));
+        set.add(user1);
+        set.add(user2);
+        set.add(user3);
+        set.add(user4);
+        set.add(user5);
         Mail mail = new Mail();
-        mail.process(set);
-        Set<Mail.User> actual = mail.setUsers;
+        Map<String, Set<String>> expected = new HashMap<>();
+        expected.put("user4", new HashSet<>(Set.of(("xxx@ya.ru"),
+                ("foo@gmail.com"), ("ups@pisem.net"), ("aaa@bbb.ru"),
+                ("lol@mail.ru"))));
+        expected.put("user5", new HashSet<>(Set.of(("vasya@pupkin.com"),
+                ("xyz@pisem.net"))));
+        Map<String, Set<String>> actual = mail.insert(set);
 
-        Set<Mail.User> exp = new HashSet<>();
-        exp.add(new Mail.User("user1", new HashSet<>(Set.of(("xxx@ya.ru"),
-                ("foo@gmail.com"),
-                ("lol@mail.ru")))));
-        exp.add(new Mail.User("user5", new HashSet<>(Set.of(
-                ("vasya@pupkin.com"),
-                ("xyz@pisem.net")))));
-      assertThat(actual, is(exp));
-
+        assertThat(actual, is(expected));
 
     }
+
+//        mail.process(set);
+//        Set<Mail.User> actual = mail.setUsers;
+
+//        Set<Mail.User> exp = new HashSet<>();
+//        exp.add(new Mail.User("user1", new HashSet<>(Set.of(("xxx@ya.ru"),
+//                ("foo@gmail.com"),
+//                ("lol@mail.ru")))));
+//        exp.add(new Mail.User("user5", new HashSet<>(Set.of(
+//                ("vasya@pupkin.com"),
+//                ("xyz@pisem.net")))));
+
+
 
 
 
