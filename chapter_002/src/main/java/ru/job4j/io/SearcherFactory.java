@@ -22,10 +22,10 @@ public class SearcherFactory extends SimpleFileVisitor<Path> {
      */
         public SearcherFactory(String filter, String key) {
             if (key.contains("-n")) {
-                this.filter = s -> s.startsWith(filter.toString());
+                this.filter = s -> s.startsWith(filter);
             }
             if (key.contains("-f")) {
-                this.filter = s -> s.equals(filter.toString());
+                this.filter = s -> s.equals(filter);
             }
             if (key.contains("-m")) {
                 Pattern pattern = Pattern.compile(filter, Pattern.CASE_INSENSITIVE);

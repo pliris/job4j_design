@@ -13,7 +13,7 @@ public class FullNameSearcher extends  SearcherFactory {
     private Predicate<String> filter;
 
     public FullNameSearcher(Predicate<String> filter, String key) {
-        this.filter = s -> s.equals(filter.toString());
+        this.filter = filter;
 
     }
 
