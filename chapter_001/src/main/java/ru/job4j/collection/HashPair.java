@@ -19,8 +19,8 @@ public class HashPair<K, V> implements Pair<K, V>, Iterable<K> {
     }
 
     private static int hash(Object key) {
-        int hash;
-        return (key == null) ? 0 : (hash = key.hashCode()) ^ hash >>> 16;
+        int hash = key.hashCode();
+        return (key == null) ? 0 : hash ^ hash >>> 16;
     }
 
     private int bucketIndex(int hash) {

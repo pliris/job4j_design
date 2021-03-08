@@ -8,6 +8,18 @@ public class User {
     private Calendar birthday;
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        User user = (User) o;
+        return children == user.children && Objects.equals(name, user.name) && Objects.equals(birthday, user.birthday);
+    }
+
     public User(String name, int children, int age, int month, int day) {
             this.name = name;
             this.children = children;

@@ -21,8 +21,9 @@ public class Transmission implements Serializable {
 
     @Override
     public String toString() {
-        return "Transmission{" +
-                "auto=" + auto +
-                '}';
+        return "Transmission{"
+                + "auto="
+                + auto
+                + '}';
     }
 }

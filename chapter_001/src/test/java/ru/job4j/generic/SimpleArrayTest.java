@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 public class SimpleArrayTest {
 
     @Test
-    public void WhenAdd3ElementsThenGet0And2Elements() {
+    public void whenAdd3ElementsThenGet0And2Elements() {
         SimpleArray<Integer> array = new SimpleArray<Integer>(10);
         array.add(11);
         array.add(23);
@@ -21,14 +21,14 @@ public class SimpleArrayTest {
     }
 
     @Test
-    public void WhenAdd2ElementThenGetReturnFalse() {
+    public void whenAdd2ElementThenGetReturnFalse() {
         SimpleArray<Integer> array = new SimpleArray<Integer>(1);
         array.add(11);
         assertThat(array.add(45), is(false));
     }
 
     @Test
-    public void WhenSet1ElementsThenGetThisElements() {
+    public void whenSet1ElementsThenGetThisElements() {
         SimpleArray<Integer> array = new SimpleArray<Integer>(3);
         array.add(11);
         array.add(23);
@@ -37,7 +37,7 @@ public class SimpleArrayTest {
         assertThat(array.get(1), is(66));
     }
     @Test (expected = IndexOutOfBoundsException.class)
-    public void WhenSet1ElementsOutOfIndexThenReturnFalse() {
+    public void whenSet1ElementsOutOfIndexThenReturnFalse() {
         SimpleArray<Integer> array = new SimpleArray<Integer>(3);
         array.add(11);
         array.add(23);
@@ -46,7 +46,7 @@ public class SimpleArrayTest {
     }
 
     @Test
-    public void WhenRemove1ElementsThenGetThisElement() {
+    public void whenRemove1ElementsThenGetThisElement() {
         SimpleArray<Integer> array = new SimpleArray<Integer>(10);
         array.add(11);
         array.add(23);
@@ -72,7 +72,7 @@ public class SimpleArrayTest {
     }
 
     @Test
-    public void WhenAdd3StringThenGet0And2Elements() {
+    public void whenAdd3StringThenGet0And2Elements() {
         SimpleArray<String> array = new SimpleArray<String>(10);
         array.add("a");
         array.add("b");
@@ -82,14 +82,14 @@ public class SimpleArrayTest {
     }
 
     @Test
-    public void WhenAdd2StringThenGetReturnFalse() {
+    public void whenAdd2StringThenGetReturnFalse() {
         SimpleArray<String> array = new SimpleArray<String>(1);
         array.add("a");
         assertThat(array.add("a"), is(false));
     }
 
     @Test
-    public void WhenSet1StringThenGetThisString() {
+    public void whenSet1StringThenGetThisString() {
         SimpleArray<String> array = new SimpleArray<String>(3);
         array.add("a");
         array.add("b");
@@ -98,7 +98,7 @@ public class SimpleArrayTest {
         assertThat(array.get(1), is("d"));
     }
     @Test (expected = IndexOutOfBoundsException.class)
-    public void WhenSet1StringOutOfIndexThenReturnFalse() {
+    public void whenSet1StringOutOfIndexThenReturnFalse() {
         SimpleArray<String> array = new SimpleArray<String>(3);
         array.add("a");
         array.add("b");
@@ -107,7 +107,7 @@ public class SimpleArrayTest {
     }
 
     @Test
-    public void WhenRemove1StringThenGet3String() {
+    public void whenRemove1StringThenGet3String() {
         SimpleArray<String> array = new SimpleArray<String>(10);
         array.add("a");
         array.add("b");

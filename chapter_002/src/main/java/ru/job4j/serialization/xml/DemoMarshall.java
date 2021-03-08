@@ -29,7 +29,7 @@ public class DemoMarshall {
 
         }
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-        try(StringReader stringReader = new StringReader(result)) {
+        try (StringReader stringReader = new StringReader(result)) {
             Auto autoUnmarshall = (Auto) unmarshaller.unmarshal(stringReader);
             System.out.println(autoUnmarshall.toString());
         } catch (Exception e) {

@@ -21,8 +21,8 @@ public class Price implements Serializable {
 
     @Override
     public String toString() {
-        return "Price{" +
-                "price=" + dollars +
-                '}';
+        return "Price{"
+                + "price=" + dollars
+                + '}';
     }
 }

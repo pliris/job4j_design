@@ -14,7 +14,6 @@ public class NameSearcher extends SearcherFactory {
 
     public NameSearcher(Predicate<String> filter, String key) {
         this.filter = s -> s.startsWith(filter.toString());
-//        super.setFilte(s -> s.startsWith(filter.toString());
     }
 
     @Override

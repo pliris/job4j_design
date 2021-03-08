@@ -15,7 +15,7 @@ public class Mail {
      * @return Возвращаем Карту содержащую Имя пользователя (ключ) в виде строки и множество с адресами эл.почты (значение).
      */
     public Map<String, Set<String>> insert(Set<User> accounts) {
-        Map<String, String> temp = new HashMap<>();// email, user
+        Map<String, String> temp = new HashMap<>(); // email, user
         Map<String, Set<String>> outMap = new HashMap<>(); // User, List<String>
         for (User currentUser : accounts) {
             String oldCopiedUser = null;

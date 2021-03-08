@@ -23,9 +23,9 @@ public class Engine implements Serializable {
 
     @Override
     public String toString() {
-        return "Engine{" +
-                "hybrid=" + hybrid +
-                ", power=" + power +
-                '}';
+        return "Engine{"
+                + "hybrid=" + hybrid
+                + ", power=" + power
+                + '}';
     }
 }

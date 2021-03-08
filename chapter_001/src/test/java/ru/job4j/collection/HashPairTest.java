@@ -29,17 +29,17 @@ public class HashPairTest {
     @Test
     public void insert2IntAndInsert1ThenFalse() {
         HashPair<Integer, String> hashPair = new HashPair<>();
-        hashPair.insert(1,"First");
-        hashPair.insert(2,"Second");
+        hashPair.insert(1, "First");
+        hashPair.insert(2, "Second");
         assertThat(hashPair.insert(1, "First"), is(false));
     }
 
     @Test
     public void insert3IntThenIterator3IntAndTrueAnd1False() {
         HashPair<Integer, String> hashPair = new HashPair<>();
-        hashPair.insert(1,"First");
-        hashPair.insert(2,"Second");
-        hashPair.insert(3,"Third");
+        hashPair.insert(1, "First");
+        hashPair.insert(2, "Second");
+        hashPair.insert(3, "Third");
         Iterator<Integer> it = hashPair.iterator();
         assertThat(it.hasNext(), is(true));
         assertThat(it.next(), is(1));

@@ -2,10 +2,10 @@ package ru.job4j.collection;
 
 import java.util.Objects;
 
-public class testHash {
+public class TestHash {
     int i;
 
-    public testHash() {
+    public TestHash() {
     }
     public int hashCode(int i) {
         int hash  = 1;
@@ -20,8 +20,8 @@ public class testHash {
     }
 
     public static void main(String[] args) {
-        testHash hash1 = new testHash();
-        testHash hash2 = new testHash();
+        TestHash hash1 = new TestHash();
+        TestHash hash2 = new TestHash();
         System.out.println(hash1.hashCode(1) + "hash");
         System.out.println(hash2.hashCode(2) + "hash");
         System.out.println(hash2.hashCode(3) + "hash");
@@ -46,11 +46,5 @@ public class testHash {
         System.out.println(hash2.bucketIndex(9) + "bucket");
         System.out.println(hash2.bucketIndex(22) + "bucket");
         System.out.println(hash2.bucketIndex(45) + "bucket");
-
-
-
-
-
-
     }
 }
