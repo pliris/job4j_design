@@ -1,66 +1,43 @@
-//package ru.job4j.it;
-//
-//import java.util.Iterator;
-//import java.util.NoSuchElementException;
-//
-//public class EvenNumbersIterator implements Iterator<Integer> {
-//    private final int[] numbers;
-//    private int positionHasNext = 0;
-//    private int positionNext = 0;
-//
-//    public EvenNumbersIterator(int[] numbers) {
-//        this.numbers = numbers;
-//    }
-//
-//    private int checkIndex(int position) {
-//        boolean check = false;
-//        int index;
-//        while (positionHasNext < numbers.length) {
-//            if (numbers[positionHasNext] % 2 == 0) {
-//                check = true;
-//                break;
-//            }
-//            positionHasNext++;
-//        }
-//        return index;
-//    }
-//
-//
-//
-//    @Override
-//    public boolean hasNext() {
-//        boolean check = false;
-//        if (positionNext < positionHasNext) {
-//            return true;
-//        }
-//        while (positionHasNext < numbers.length) {
-//            if (numbers[positionHasNext] % 2 == 0) {
-//                check = true;
-//                break;
-//            }
-//            positionHasNext++;
-//        }
-//        return check;
-//    }
-//
-//    @Override
-//    public Integer next() {
-////        Integer num = 0;
-////        while (positionNext < numbers.length) {
-////            if (numbers[positionNext] % 2 == 0) {
-////                num = numbers[positionNext];
-////                break;
-////            }
-////            positionNext++;
-////        }
-////        if (positionNext == numbers.length) {
-////            throw new NoSuchElementException();
-////        }
-////        positionNext++;
-////        return num;
-//        if (!hasNext()) {
-//            throw new NoSuchElementException();
-//        }
-//        return numbers[positionNext++];
-//    }
-//}
+package ru.job4j.it;
+
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+public class EvenNumbersIterator implements Iterator<Integer> {
+    private final int[] numbers;
+    private int position;
+
+    public EvenNumbersIterator(int[] numbers) {
+        this.numbers = numbers;
+    }
+
+    private boolean nextEven() {
+        boolean even = false;
+        int index;
+        for (index = this.position; index < numbers.length; index++) {
+            if (this.checkEven(index)) {
+                this.position = index;
+                even = true;
+                break;
+            }
+        }
+        return even;
+    }
+
+    private boolean checkEven(int cursor) {
+        return (numbers[cursor] % 2 == 0);
+    }
+
+    @Override
+    public boolean hasNext() {
+        return nextEven();
+    }
+
+    @Override
+    public Integer next() {
+        if (!hasNext()) {
+            throw new NoSuchElementException();
+        }
+        return numbers[position++];
+    }
+}
