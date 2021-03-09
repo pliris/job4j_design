@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class Config {
     private final String path;
-    private Map<String, String> values = new HashMap<String, String>();
+    private Map<String, String> values = new HashMap<>();
 
     public Config(final String path) {
         this.path = path;
@@ -15,7 +15,7 @@ public class Config {
 
     public void load() {
         try (FileReader fReader = new FileReader(path);
-             BufferedReader bReader = new BufferedReader(fReader);) {
+             BufferedReader bReader = new BufferedReader(fReader)) {
               this.values = bReader.lines().filter(s -> !s.contains("##"))
                    .filter(s -> !s.contains(System.lineSeparator())).filter(s -> !s.equals(""))
                      .map(s -> s.split("="))
@@ -44,6 +44,6 @@ public class Config {
     public static void main(String[] args) {
         Config config = new Config("./app.properties");
         config.load();
-        System.out.println(config.value("hibernate.connection.username"));
+        System.out.println(config.value("jdbc.username"));
     }
 }
