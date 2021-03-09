@@ -113,7 +113,7 @@
           <configuration>
             <archive>
               <manifest>
-                <mainClass>ru.job4j.io.SearchFile</mainClass>
+                <mainClass>ru.job4j.io.filefinder.SearchFile</mainClass>
               </manifest>
             </archive>
           </configuration>

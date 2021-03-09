@@ -31,7 +31,7 @@ public class HashPairTest {
         HashPair<Integer, String> hashPair = new HashPair<>();
         hashPair.insert(1, "First");
         hashPair.insert(2, "Second");
-        assertThat(hashPair.insert(1, "First"), is(false));
+        assertThat(hashPair.insert(1, "First"), is(true));
     }
 
     @Test
